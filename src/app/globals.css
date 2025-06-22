@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --background: #ffffff;
+  --header-background: #ededed;
+  --foreground: #171717;
+  --button-background: #184ae7;
+  --button-hover-background: #1743d4;
+  --icons-color: #167cd2;
+  --main-font: "Saira", sans-serif;
+  --secondary-font: "Kanit", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #00091b;
+    --foreground: #ededed;
+    --button-background: #184ae7;
+    --icons-color: #167cd2;
+    --button-hover-background: #1743d4;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Oswald", sans-serif;
+}
+
+#page_header,
+#page_footer {
+  /* background: var(--header-background); */
+  background-image: url("/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#page_header button {
+  color: var(--foreground);
+  box-shadow: 0px 2px 1px 1px rgba(24, 74, 231, 0.6);
+  -webkit-box-shadow: 0px 2px 1px 1px rgba(24, 74, 231, 0.6);
+  -moz-box-shadow: 0px 2px 1px 1px rgba(24, 74, 231, 0.6);
+}
+#page_header button:active {
+  box-shadow: 0px 1px 1px 1px rgba(24, 74, 231, 0.5);
+  -webkit-box-shadow: 0px 1px 1px 1px rgba(24, 74, 231, 0.5);
+  -moz-box-shadow: 0px 1px 1px 1px rgba(24, 74, 231, 0.5);
+  transform: translateY(1px);
+}

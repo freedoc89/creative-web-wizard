@@ -1,0 +1,100 @@
+[
+  {
+    "type": "shopify",
+    "label": "Shopify Csomagok",
+    "icon": "shopify",
+    "packages": [
+      {
+        "name": "Kezdő",
+        "price": 120000,
+        "features": [
+          "Mobilbarát sablon kiválasztása",
+          "Alap színek, logó beállítása",
+          "Max. 5 termék feltöltése",
+          "Fizetési módok bekötése",
+          "Kapcsolat oldal és alap menük"
+        ]
+      },
+      {
+        "name": "Profi (Ajánlott)",
+        "price": 220000,
+        "features": [
+          "Több sablon lehetőség",
+          "Max. 20 termék",
+          "Blog, hírlevél, statisztikák",
+          "Alap SEO beállítások",
+          "Teljes mobil optimalizálás"
+        ]
+      },
+      {
+        "name": "Prémium",
+        "price": 280000,
+        "features": [
+          "Teljesen egyedi design",
+          "Korlátlan termékfeltöltés",
+          "Automatizációk (pl. email, raktár)",
+          "Egyedi funkciók fejlesztése",
+          "Tanácsadás és support"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "wordpress",
+    "label": "WordPress Csomagok",
+    "icon": "wordpress",
+    "packages": [
+      {
+        "name": "Kezdő",
+        "price": 120000,
+        "features": [
+          "Mobilbarát sablon kiválasztása",
+          "Alap színek, logó beállítása",
+          "Max. 5 termék feltöltése",
+          "Fizetési módok bekötése",
+          "Kapcsolat oldal és alap menük"
+        ]
+      },
+      {
+        "name": "Profi (Ajánlott)",
+        "price": 220000,
+        "features": [
+          "Több sablon lehetőség",
+          "Max. 20 termék",
+          "Blog, hírlevél, statisztikák",
+          "Alap SEO beállítások",
+          "Teljes mobil optimalizálás"
+        ]
+      },
+      {
+        "name": "Prémium",
+        "price": 280000,
+        "features": [
+          "Teljesen egyedi design",
+          "Korlátlan termékfeltöltés",
+          "Automatizációk (pl. email, raktár)",
+          "Egyedi funkciók fejlesztése",
+          "Tanácsadás és support"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "static",
+    "label": "Statikus HTML Weboldal",
+    "icon": "html5",
+    "packages": [
+      {
+        "name": "Alap csomag",
+        "price": 100000,
+        "features": [
+          "Egyoldalas weboldal",
+          "Mobilbarát dizájn",
+          "Kapcsolati űrlap",
+          "Gyors betöltés",
+          "Egyszerű karbantartás"
+        ]
+      }
+    ]
+  }
+]
