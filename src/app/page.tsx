@@ -85,6 +85,7 @@ export default function Home() {
           type="ajanlat"
           selectedPackage={{
             name: "Pro csomag",
+            description: null,
             price: 220000,
             features: ["Reszponzív dizájn", "Egyedi fejlesztés"]
           }}

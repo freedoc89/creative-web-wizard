@@ -1,6 +1,7 @@
 import { Provider } from "@/components/ui/provider";
 import type { Metadata } from "next";
 import "./globals.css";
+import { Theme } from "@chakra-ui/react";
 
 export const metadata: Metadata = {
   title: "Kreatív Web Mágus",
@@ -16,7 +17,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body>
-        <Provider>{children}</Provider>
+        <Provider theme={Theme}>{children}</Provider>
       </body>
     </html>
   );
