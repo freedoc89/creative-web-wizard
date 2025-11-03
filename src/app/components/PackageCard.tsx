@@ -16,10 +16,12 @@ import { useState } from "react";
 import { IconType } from "react-icons";
 import { FaHtml5, FaShopify, FaWordpress } from "react-icons/fa";
 import { FaCircleCheck, FaHandshakeSimple } from "react-icons/fa6";
+import FormDialog from "./FormDialog";
 
 type PackageCardProps = {
   title: string;
-  icon: string;
+  description: string | null;
+  icon: IconType;
   selectedPackage: string;
   packages: PackageItem[];
 };
@@ -27,18 +29,22 @@ type PackageCardProps = {
 export default function PackageCard({
   title,
   icon,
+  description,
   selectedPackage,
   packages
 }: PackageCardProps) {
-  const Icon = getIcon(icon);
+  const Icon = icon;
   const [selectedIndex, setSelectedIndex] = useState<string | null>(
     selectedPackage
   );
-  const selectedPackageList = packages[parseInt(selectedIndex!)];
+  const [open, setOpen] = useState(false);
+  const selectedPackageItem = packages[parseInt(selectedIndex!)];
 
   return (
     <>
       <Box
+        boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+        height="100%"
         position="relative"
         borderRadius="5px"
         padding={["20px", "30px"]}
@@ -108,45 +114,71 @@ export default function PackageCard({
         </RadioGroup.Root>
 
         <List.Root gap="2" variant="plain" align="center">
-          {selectedPackageList?.features.map((feature, index) => (
+          {selectedPackageItem?.features.map((feature, index) => (
             <List.Item key={index} fontFamily="var(--secondary-font)">
-              <List.Indicator asChild color="green.500">
+              <List.Indicator asChild color="green.500" marginEnd="0.5rem">
                 <FaCircleCheck />
               </List.Indicator>
               {feature}
             </List.Item>
           ))}
         </List.Root>
-        <HStack
+        <Flex
           justifyContent="space-between"
-          alignItems="center"
+          alignItems="flex-start"
+          flexDirection={{
+            base: "column",
+            sm: "column",
+            md: "column",
+            lg: "column",
+            "2xl": "row"
+          }}
           borderTop="2px solid rgba(255,255,255,.3)"
           mt="1rem"
           pt="1rem"
+          gap={["1rem", "1rem"]}
         >
           <Box display="flex" alignItems="center" gap="0.2rem">
             <Text fontSize="1.2rem" mt="-6px">
               💰
             </Text>
             <Text fontFamily="var(--secondary-font)" fontSize="1.2rem">
-              Ár: {formatCurrency(selectedPackageList.price)}
+              Ár: {formatCurrency(selectedPackageItem.price)}
             </Text>
           </Box>
           <Button
+            _hover={{ bg: "var(--button-hover-background)" }}
+            _active={{
+              boxShadow: " 0px 1px 1px 1px rgba(24, 74, 231, 0.5)",
+              transform: "translateY(1px)"
+            }}
             height="fit-content"
+            width={{ base: "100%", "2xl": "initial" }}
             bg="var(--button-background)"
             color="var(--foreground)"
             p="0.4rem 0.7rem"
             borderRadius="8px"
             fontSize="1.2rem"
             fontFamily="var(--secondary-font)"
-            _hover={{ bg: "var(--button-hover-background)" }}
             transition="background 0.2s ease-out"
+            boxShadow="0px 2px 1px 1px rgba(24, 74, 231, 0.6)"
+            onClick={() => setOpen(true)}
           >
             <FaHandshakeSimple />
             Megrendelem
           </Button>
-        </HStack>
+          <FormDialog
+            isOpen={open}
+            onClose={() => setOpen(false)}
+            type="rendeles"
+            selectedPackage={{
+              name: selectedPackageItem.name,
+              description: description,
+              price: selectedPackageItem.price,
+              features: selectedPackageItem.features
+            }}
+          />
+        </Flex>
       </Box>
     </>
   );

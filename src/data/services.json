@@ -1,0 +1,32 @@
+[
+  {
+    "type": "shopify",
+    "label": " Shopify fejlesztés",
+    "icon": "FaShopify",
+    "description": "Shopify webáruházak készítése, testreszabása, *alkalmazások kiváltása."
+  },
+  {
+    "type": "wordpress",
+    "label": "WordPress fejlesztés",
+    "icon": "FaWordpress",
+    "description": "Egyedi WordPress oldalak építése, testreszabása, egyedi bővítmény készítése."
+  },
+  {
+    "type": "webpage",
+    "label": "Weboldal fejlesztés",
+    "icon": "FaHtml5",
+    "description": "Modern és reszponzív weboldalak fejlesztése. (HTML, CSS, JS)"
+  },
+  {
+    "type": "desktop",
+    "label": "Asztali alkalmazás fejlesztés",
+    "icon": "FiMonitor",
+    "description": "Egyedi asztali alkalmazások fejlesztése. (Windows, Cross-Plat)"
+  },
+  {
+    "type": "mobile",
+    "label": "Mobil alkalmazás fejlesztés",
+    "icon": "FaMobileAlt",
+    "description": "Egyedi mobilalkalmazások fejlesztése: Android natív (C# .NET) és React Native (Android, iOS)"
+  }
+]

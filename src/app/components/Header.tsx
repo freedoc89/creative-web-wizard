@@ -1,5 +1,4 @@
 "use client";
-import { ColorModeButton } from "@/components/ui/color-mode";
 import {
   Box,
   Button,
@@ -10,11 +9,20 @@ import {
   useMediaQuery,
   VStack
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaHandPointRight } from "react-icons/fa";
+import FormDialog from "./FormDialog";
 
 export default function Header() {
   const [isMobile] = useMediaQuery(["(max-width: 768px)"]);
+  const [open, setOpen] = useState(false);
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +63,7 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
+
   return (
     <VStack
       id="page_header"
@@ -89,6 +98,7 @@ export default function Header() {
           fontSize="1.1rem"
           _hover={{ bg: "var(--button-hover-background)" }}
           transition="background 0.2s ease-out"
+          onClick={scrollToBottom}
         >
           Kapcsolat
         </Button>
@@ -140,7 +150,7 @@ export default function Header() {
               gap="1rem"
             >
               <Flex gap="1rem" alignItems="center">
-                <Box height={["3rem", "3rem"]} width={["3rem", "3rem"]}>
+                <Box height="3rem" width="3rem">
                   <FaHandPointRight size="100%" />
                 </Box>
                 <Text>
@@ -149,7 +159,7 @@ export default function Header() {
                 </Text>
               </Flex>
               <Flex gap="1rem" alignItems="center">
-                <Box height={["3rem", "3rem"]} width={["3rem", "3rem"]}>
+                <Box height="3rem" width="2.8rem">
                   <FaHandPointRight size="100%" />
                 </Box>
                 <Text>
@@ -158,7 +168,7 @@ export default function Header() {
                 </Text>
               </Flex>
               <Flex gap="1rem" alignItems="center">
-                <Box height={["3rem", "3rem"]} width={["3rem", "3rem"]}>
+                <Box height="3rem" width="3.5rem">
                   <FaHandPointRight size="100%" />
                 </Box>
                 <Text>
@@ -170,6 +180,7 @@ export default function Header() {
             <Button
               _hover={{ bg: "var(--button-hover-background)" }}
               mt="1rem"
+              height="fit"
               p="14px 24px"
               borderRadius="12px"
               bg="var(--button-background)"
@@ -178,27 +189,24 @@ export default function Header() {
               transition="background 0.2s ease-out"
               marginLeft={["auto", "initial"]}
               marginRight={["auto", "initial"]}
+              onClick={() => setOpen(true)}
             >
               <HStack w="100%">
                 <FaHandPointRight />
                 <Text>Árajánlat kérése</Text>
               </HStack>
             </Button>
+            <FormDialog
+              isOpen={open}
+              onClose={() => setOpen(false)}
+              type="ajanlat"
+              selectedPackage={{
+                name: "Pro csomag",
+                price: 220000,
+                features: ["Reszponzív dizájn", "Egyedi fejlesztés"]
+              }}
+            />
           </VStack>
-
-          {/* <Box
-            position="absolute"
-            top="-50px"
-            right="0"
-            zIndex="0"
-            w="100%"
-            h="100%"
-            backgroundImage="url('/hero.png')"
-            backgroundRepeat="no-repeat"
-            backgroundSize="contain"
-            backgroundPosition="right center"
-            opacity="0.8"
-          /> */}
         </HStack>
       </VStack>
       <HStack

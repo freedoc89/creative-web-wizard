@@ -2,11 +2,12 @@
   {
     "type": "shopify",
     "label": "Shopify Csomagok",
-    "icon": "shopify",
+    "description": null,
+    "icon": "FaShopify",
     "packages": [
       {
         "name": "Kezdő",
-        "price": 120000,
+        "price": 150000,
         "features": [
           "Mobilbarát sablon kiválasztása",
           "Alap színek, logó beállítása",
@@ -17,7 +18,7 @@
       },
       {
         "name": "Profi (Ajánlott)",
-        "price": 220000,
+        "price": 250000,
         "features": [
           "Több sablon lehetőség",
           "Max. 20 termék",
@@ -28,7 +29,7 @@
       },
       {
         "name": "Prémium",
-        "price": 280000,
+        "price": 340000,
         "features": [
           "Teljesen egyedi design",
           "Korlátlan termékfeltöltés",
@@ -42,11 +43,12 @@
   {
     "type": "wordpress",
     "label": "WordPress Csomagok",
-    "icon": "wordpress",
+    "description": "Az árak nem tartalmazzák a domain és tárhely/VPS költségeit. A megfelelő szolgáltató kiválasztásában és beállításában természetesen segítünk.",
+    "icon": "FaWordpress",
     "packages": [
       {
         "name": "Kezdő",
-        "price": 120000,
+        "price": 180000,
         "features": [
           "Mobilbarát sablon kiválasztása",
           "Alap színek, logó beállítása",
@@ -57,7 +59,7 @@
       },
       {
         "name": "Profi (Ajánlott)",
-        "price": 220000,
+        "price": 280000,
         "features": [
           "Több sablon lehetőség",
           "Max. 20 termék",
@@ -68,7 +70,7 @@
       },
       {
         "name": "Prémium",
-        "price": 280000,
+        "price": 480000,
         "features": [
           "Teljesen egyedi design",
           "Korlátlan termékfeltöltés",
@@ -82,7 +84,8 @@
   {
     "type": "static",
     "label": "Statikus HTML Weboldal",
-    "icon": "html5",
+    "description": "Az árak nem tartalmazzák a domain és tárhely/VPS költségeit. A megfelelő szolgáltató kiválasztásában és beállításában természetesen segítünk.",
+    "icon": "FaHtml5",
     "packages": [
       {
         "name": "Alap csomag",
@@ -93,6 +96,55 @@
           "Kapcsolati űrlap",
           "Gyors betöltés",
           "Egyszerű karbantartás"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "desktop",
+    "label": "Asztali alkalmazás",
+    "description": null,
+    "icon": "PiMonitorBold",
+    "packages": [
+      {
+        "name": "Alap csomag",
+        "price": 250000,
+        "features": [
+          "Alap felhasználói felület (főablak + 2-3 nézet)",
+          "Alap stílus és színek beállítása",
+          "Telepíthető Windows csomag (MSIX/EXE)",
+          "Rövid dokumentáció és betanítás"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "mobile",
+    "label": "Mobil alkalmazás",
+    "description": null,
+    "icon": "FaMobileAlt",
+    "packages": [
+      {
+        "name": "C# .NET (Android natív)",
+        "price": 300000,
+        "features": [
+          "Natív Android alkalmazás C# .NET keretrendszerrel",
+          "Alap felhasználói felület (főképernyő + 2-3 nézet)",
+          "Alap stílus és színek beállítása",
+          "Telepíthető Android APK",
+          "Rövid dokumentáció és betanítás"
+        ]
+      },
+      {
+        "name": "React Native (Android + iOS)",
+        "price": 400000,
+        "features": [
+          "Cross-platform mobilalkalmazás (Android és iOS)",
+          "Alap felhasználói felület (főképernyő + 2-3 nézet)",
+          "Alap stílus és színek beállítása",
+          "API integráció lehetősége",
+          "Publikálás előkészítése Play Store / App Store számára",
+          "Rövid dokumentáció és betanítás"
         ]
       }
     ]

@@ -19,7 +19,7 @@ export default function Packages() {
       <Grid
         templateColumns={["1fr", "repeat(3, 1fr)"]}
         maxW={["90%", "80%"]}
-        gap={8}
+        gap={6}
         justifyItems={["center", "initial"]}
         justifyContent="center"
       >
@@ -30,6 +30,7 @@ export default function Packages() {
               icon={pack.icon}
               selectedPackage={packages[index].packages.length > 1 ? "1" : "0"}
               packages={pack.packages}
+              description={pack.description}
             />
           </GridItem>
         ))}

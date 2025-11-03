@@ -8,6 +8,8 @@
   --header-background: #ededed;
   --foreground: #171717;
   --button-background: #184ae7;
+  --cancel-button-background: #e71818cc;
+  --cancel-button-hover-background: #d41717bd;
   --button-hover-background: #1743d4;
   --icons-color: #167cd2;
   --main-font: "Saira", sans-serif;

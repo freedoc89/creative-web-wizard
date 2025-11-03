@@ -1,3 +1,4 @@
+import services from "@/data/services";
 import {
   Box,
   Grid,
@@ -7,9 +8,7 @@ import {
   Text,
   VStack
 } from "@chakra-ui/react";
-import { FaShopify, FaWordpress } from "react-icons/fa";
 import { FiMonitor } from "react-icons/fi";
-import { HiMiniCog6Tooth } from "react-icons/hi2";
 
 export default function Services() {
   return (
@@ -27,13 +26,75 @@ export default function Services() {
       </Heading>
       <Grid
         templateColumns={["1fr", "repeat(2, 1fr)"]}
-        maxW={["90%", "80%"]}
-        gap={8}
+        width={["90%", "80%"]}
+        gap={6}
         justifyItems={["center", "initial"]}
         justifyContent="center"
       >
-        <GridItem>
+        {services.map((item, index) => {
+          const Icon = item.icon;
+          const maxWValue =
+            item.type === "desktop" ? ["100%", "90%"] : ["100%", "75%"];
+          return (
+            <GridItem key={index}>
+              <Box
+                boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+                height="100%"
+                position="relative"
+                borderRadius="5px"
+                padding={["20px", "30px"]}
+                backgroundColor="#000f2e"
+              >
+                <HStack alignItems="flex-start" maxW={maxWValue} gap={4}>
+                  {item.icon === FiMonitor ? (
+                    <Box height={["5rem", "4.5rem"]} width={["6rem", "6rem"]}>
+                      <Icon size="100%" stroke="var(--icons-color)" />
+                    </Box>
+                  ) : (
+                    <Box height={["4rem", "5rem"]} width={["3rem", "4rem"]}>
+                      <Icon size="100%" fill="var(--icons-color)" />
+                    </Box>
+                  )}
+                  <Heading
+                    as="h2"
+                    fontFamily="var(--main-font)"
+                    fontSize={["2rem", "2.8rem"]}
+                    lineHeight="1.1"
+                    fontWeight="700"
+                  >
+                    {item.label}
+                  </Heading>
+                </HStack>
+                <Text
+                  fontFamily="var(--main-font)"
+                  fontWeight="400"
+                  mt="2rem"
+                  fontSize={["1.4rem, 2rem"]}
+                >
+                  {item.description}
+                  {item.type === "shopify" ? (
+                    <span
+                      style={{
+                        color: "red",
+                        opacity: ".7",
+                        fontSize: "0.8rem !important"
+                      }}
+                    >
+                      <br />
+                      (* ha lehetséges!)
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                </Text>
+              </Box>
+            </GridItem>
+          );
+        })}
+        {/* <GridItem>
           <Box
+            boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+            height="100%"
             position="relative"
             borderRadius="5px"
             padding={["20px", "30px"]}
@@ -76,6 +137,8 @@ export default function Services() {
         </GridItem>
         <GridItem>
           <Box
+            boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+            height="100%"
             position="relative"
             borderRadius="5px"
             padding={["20px", "30px"]}
@@ -108,6 +171,8 @@ export default function Services() {
         </GridItem>
         <GridItem>
           <Box
+            boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+            height="100%"
             position="relative"
             borderRadius="5px"
             padding={["20px", "30px"]}
@@ -121,18 +186,8 @@ export default function Services() {
           >
             <HStack alignItems="flex-start" maxW={["100%", "70%"]}>
               <Box height={["4rem", "6rem"]} width={["5rem", "6rem"]}>
-                <HiMiniCog6Tooth size="100%" fill="var(--icons-color)" />
+                <FaHtml5 size="100%" fill="var(--icons-color)" />
               </Box>
-              {/* <Box
-                className="gear-icon"
-                as={HiMiniCog6Tooth}
-                boxSize="6rem"
-                fill="var(--icons-color)"
-                transition="transform 2.2s ease"
-                _groupHover={{
-                  transform: "rotate(360deg)"
-                }}
-              /> */}
               <Heading
                 as="h2"
                 fontFamily="var(--main-font)"
@@ -155,6 +210,8 @@ export default function Services() {
         </GridItem>
         <GridItem>
           <Box
+            boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+            height="100%"
             position="relative"
             borderRadius="5px"
             padding={["20px", "30px"]}
@@ -183,7 +240,7 @@ export default function Services() {
               Egyedi asztali alkalmazások fejlesztése. (Windows, Cross-Plat)
             </Text>
           </Box>
-        </GridItem>
+        </GridItem> */}
       </Grid>
     </VStack>
   );
