@@ -70,7 +70,7 @@ export default function FormDialog({
       selectedPackage
     };
 
-    console.log("Küldés:", fullData);
+    //console.log("Küldés:", fullData);
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
