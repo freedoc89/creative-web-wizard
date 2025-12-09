@@ -47,7 +47,7 @@ Csomag: ${selectedPackage ? selectedPackage.name : "N/A"}
       to: email,
       subject: "Köszönjük a megrendelését!",
       html: `
-  <div style="font-family: Arial, sans-serif; color: #171717; line-height: 1.4; background-color: #f4f4f4; padding: 2rem;">
+  <div style="font-family: Arial, sans-serif; color: #171717; line-height: 1.4; background-color: #f4f4f4; padding: 0.5rem;">
     <div style="
       margin: 0 auto; 
       background-image: url('https://creativewebwizard.hu/background-min.png'); 
@@ -69,7 +69,7 @@ Csomag: ${selectedPackage ? selectedPackage.name : "N/A"}
       <!-- Rendelés részletei -->
        <h2 style="margin-top: 2rem;color: #fff;font-size:1.2rem;text-align:center; margin-bottom:0;">Megrendelt szolgáltatás:</h2>
       <div style="margin:0 auto; 
-                  width:max-content; 
+                  width:fit-content; 
                   margin-top: 0.5rem; 
                   background-color: #00091b; 
                   padding: 0.6rem; 
@@ -84,11 +84,12 @@ Csomag: ${selectedPackage ? selectedPackage.name : "N/A"}
         <p><strong>Ár:</strong> ${selectedPackage?.price.toLocaleString(
           "hu-HU"
         )} Ft</p>
-        ${
-          selectedPackage?.description
-            ? `*${selectedPackage.description.replace(/\n/g, "<br>")}</p>`
-            : ""
-        }
+       ${
+         selectedPackage?.description
+           ? `*${selectedPackage.description.replace(/\n/g, "<br>")}</p>`
+           : ""
+       }
+        
       </div>
 
       <!-- Footer -->
