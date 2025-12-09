@@ -205,6 +205,7 @@ export default function Header() {
               type="ajanlat"
               selectedPackage={{
                 name: "Pro csomag",
+                label: "WordPress",
                 description: null,
                 price: 220000,
                 features: ["Reszponzív dizájn", "Egyedi fejlesztés"]
