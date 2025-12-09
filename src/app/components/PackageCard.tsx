@@ -45,6 +45,9 @@ export default function PackageCard({
       <Box
         boxShadow="var(--card-shadow)"
         height="100%"
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
         position="relative"
         borderRadius="5px"
         padding={["20px", "30px"]}
