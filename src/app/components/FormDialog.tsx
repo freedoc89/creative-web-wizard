@@ -82,7 +82,6 @@ export default function FormDialog({
 
       if (res.success) {
         console.log("Email sikeresen elküldve");
-        // opcionálisan: toast vagy feedback
       } else {
         console.error("Email küldés sikertelen");
       }
@@ -102,7 +101,7 @@ export default function FormDialog({
       }}
     >
       <Portal>
-        <DialogBackdrop />
+        <DialogBackdrop bg="rgba(0, 0, 0, 0.8)" backdropFilter="blur(8px)" />
         <DialogPositioner
           maxW="95%"
           padding={["2px", "initial"]}
@@ -110,12 +109,19 @@ export default function FormDialog({
           style={{ transform: "translateX(-50%)" }}
         >
           <DialogContent
-            boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
-            backgroundColor="#000f2e"
+            boxShadow="var(--card-shadow)"
+            backgroundColor="var(--card-background)"
             padding={["1rem", "initial"]}
+            border="var(--card-border)"
+            color=" var(--foreground)"
+            fontFamily="var(--main-font)"
           >
             <DialogHeader justifyContent="center">
-              <DialogTitle fontSize="2rem">
+              <DialogTitle
+                fontSize="2rem"
+                fontWeight="700"
+                color="var(--foreground)"
+              >
                 {type === "ajanlat" ? "Ajánlatkérés" : "Megrendelés"}
               </DialogTitle>
             </DialogHeader>
@@ -123,7 +129,7 @@ export default function FormDialog({
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack gap="4">
                   <Field.Root>
-                    <Field.Label>Név</Field.Label>
+                    <Field.Label color=" var(--foreground)">Név</Field.Label>
                     <Input {...register("name")} placeholder="Teljes név" />
                     {errors.name && (
                       <Box color="red.300" fontSize="0.8rem">
@@ -212,7 +218,11 @@ export default function FormDialog({
                     </Field.Root>
                   )}
                   {type === "rendeles" && (
-                    <Box bg="gray.700" p="3" borderRadius="md">
+                    <Box
+                      border="1px solid var(--foreground)"
+                      p="3"
+                      borderRadius="md"
+                    >
                       <strong>Csomag:</strong> {selectedPackage!.name} –{" "}
                       {selectedPackage!.price.toLocaleString("hu-HU")} Ft
                       {selectedPackage!.description && (

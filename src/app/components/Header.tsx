@@ -71,6 +71,7 @@ export default function Header() {
       pb="2rem"
       alignItems="flex-start"
       overflow="hidden"
+      color="var(--header-foreground)"
       style={{
         transition: "clip-path 0.1s ease-out, padding-bottom 0.1s ease-out"
       }}
@@ -80,6 +81,7 @@ export default function Header() {
         margin="0 auto"
         justifyContent={{ base: "center", md: "space-between" }}
         zIndex="1"
+        color="var(--header-foreground)"
       >
         <Box marginTop="1.5rem">
           <Image
@@ -113,7 +115,7 @@ export default function Header() {
         lineHeight="1.2"
       >
         <HStack alignItems="flex-start" position="relative" width="100%">
-          <VStack alignItems="flex-start">
+          <VStack alignItems="flex-start" color="var(--header-foreground)">
             <Text
               fontFamily="var(--main-font)"
               w="100%"
@@ -139,6 +141,7 @@ export default function Header() {
               right={["0", "-70px"]}
               top={{ base: "0", md: "-10%", xl: "-16%" }}
               src="/multiplatform.png"
+              alt="multi platform image"
               width={{ base: "450px", md: "450px", lg: "450px", xl: "800px" }}
             />
 

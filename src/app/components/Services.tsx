@@ -38,12 +38,13 @@ export default function Services() {
           return (
             <GridItem key={index}>
               <Box
-                boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+                boxShadow="var(--card-shadow)"
+                border="var(--card-border)"
                 height="100%"
                 position="relative"
                 borderRadius="5px"
                 padding={["20px", "30px"]}
-                backgroundColor="#000f2e"
+                backgroundColor="var(--card-background)"
               >
                 <HStack alignItems="flex-start" maxW={maxWValue} gap={4}>
                   {item.icon === FiMonitor ? (

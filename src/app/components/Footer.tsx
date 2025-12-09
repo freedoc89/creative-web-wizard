@@ -11,6 +11,7 @@ export default function Footer() {
       alignItems="flex-start"
       overflow="hidden"
       gap={["2rem", "0"]}
+      color="var(--footer-foreground)"
     >
       <HStack
         w="90%"

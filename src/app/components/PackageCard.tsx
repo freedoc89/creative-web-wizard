@@ -43,12 +43,13 @@ export default function PackageCard({
   return (
     <>
       <Box
-        boxShadow="0px 0px 1px 2px rgba(24, 74, 231, 0.6)"
+        boxShadow="var(--card-shadow)"
         height="100%"
         position="relative"
         borderRadius="5px"
         padding={["20px", "30px"]}
-        backgroundColor="#000f2e"
+        border="var(--card-border)"
+        backgroundColor="var(--card-background)"
       >
         <HStack
           alignItems="flex-start"
@@ -155,7 +156,6 @@ export default function PackageCard({
             height="fit-content"
             width={{ base: "100%", "2xl": "initial" }}
             bg="var(--button-background)"
-            color="var(--foreground)"
             p="0.4rem 0.7rem"
             borderRadius="8px"
             fontSize="1.2rem"
