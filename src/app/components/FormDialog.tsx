@@ -1,4 +1,5 @@
 "use client";
+import { toaster } from "@/components/ui/toaster";
 import services from "@/data/services";
 import {
   Box,
@@ -17,8 +18,9 @@ import {
   Portal,
   RadioGroup,
   Stack,
+  Text,
   Textarea,
-  Text
+  VStack
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -40,6 +42,7 @@ type FormDialogProps = {
   type: "ajanlat" | "rendeles";
   selectedPackage?: {
     name: string;
+    label: string;
     description: string | null;
     price: number;
     features: string[];
@@ -62,7 +65,6 @@ export default function FormDialog({
   } = useForm<FormData>({
     resolver: zodResolver(schema)
   });
-
   const onSubmit = async (data: FormData) => {
     const fullData = {
       ...data,
@@ -81,9 +83,25 @@ export default function FormDialog({
       const res = await response.json();
 
       if (res.success) {
-        console.log("Email sikeresen elküldve");
+        //console.log("Email sikeresen elküldve");
+        toaster.create({
+          title:
+            type === "ajanlat"
+              ? "Ajánlatkérés elküldve!"
+              : "Megrendelés sikeres!",
+          description: "Hamarosan felvesszük Önnel a kapcsolatot.",
+          type: "success",
+          duration: 4000,
+          closable: true
+        });
       } else {
         console.error("Email küldés sikertelen");
+        toaster.create({
+          title: "Hiba történt!",
+          description: "A küldés sikertelen volt.",
+          type: "error",
+          duration: 4000
+        });
       }
     } catch (error) {
       console.error("Hálózati hiba:", error);
@@ -218,28 +236,35 @@ export default function FormDialog({
                     </Field.Root>
                   )}
                   {type === "rendeles" && (
-                    <Box
-                      border="1px solid var(--foreground)"
-                      p="3"
-                      borderRadius="md"
-                    >
-                      <strong>Csomag:</strong> {selectedPackage!.name} –{" "}
-                      {selectedPackage!.price.toLocaleString("hu-HU")} Ft
-                      {selectedPackage!.description && (
-                        <span
-                          style={{
-                            fontSize: "0.63rem",
-                            fontWeight: "lighter",
-                            font: "status-bar",
-                            display: "inline-block",
-                            whiteSpace: "pre-line",
-                            opacity: "0.6"
-                          }}
-                        >
-                          *{selectedPackage!.description.replace(".", ".\n")}
-                        </span>
-                      )}
-                    </Box>
+                    <VStack width="100%" alignItems="start">
+                      <Text>Kiválasztott szolgáltatás</Text>
+                      <Box
+                        border="1px solid var(--foreground)"
+                        p="3"
+                        borderRadius="md"
+                      >
+                        <strong style={{ marginRight: "0.3rem" }}>
+                          Csomag:{" "}
+                        </strong>
+                        {selectedPackage?.label.replace("Csomagok", "")}-{" "}
+                        {selectedPackage!.name} –{" "}
+                        {selectedPackage!.price.toLocaleString("hu-HU")} Ft
+                        {selectedPackage!.description && (
+                          <span
+                            style={{
+                              fontSize: "0.63rem",
+                              fontWeight: "lighter",
+                              font: "status-bar",
+                              display: "inline-block",
+                              whiteSpace: "pre-line",
+                              opacity: "0.6"
+                            }}
+                          >
+                            *{selectedPackage!.description.replace(".", ".\n")}
+                          </span>
+                        )}
+                      </Box>
+                    </VStack>
                   )}
                   <Text font="status-bar" px={3}>
                     A megrendelési igény/ajánlatkérés leadása után felvesszük

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Theme } from "@chakra-ui/react";
 import { Saira, Kanit, Oswald } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Kreatív Web Mágus",
@@ -30,7 +31,10 @@ export default function RootLayout({
       className={`${saira.variable} ${kanit.variable} ${oswald.variable}`}
     >
       <body>
-        <Provider theme={Theme}>{children}</Provider>
+        <Provider theme={Theme}>
+          {children}
+          <Toaster />{" "}
+        </Provider>
       </body>
     </html>
   );

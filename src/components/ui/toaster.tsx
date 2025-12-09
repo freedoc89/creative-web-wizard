@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Toaster as ChakraToaster,
@@ -6,13 +6,13 @@ import {
   Spinner,
   Stack,
   Toast,
-  createToaster,
-} from "@chakra-ui/react"
+  createToaster
+} from "@chakra-ui/react";
 
 export const toaster = createToaster({
   placement: "bottom-end",
-  pauseOnPageIdle: true,
-})
+  pauseOnPageIdle: true
+});
 
 export const Toaster = () => {
   return (
@@ -26,9 +26,22 @@ export const Toaster = () => {
               <Toast.Indicator />
             )}
             <Stack gap="1" flex="1" maxWidth="100%">
-              {toast.title && <Toast.Title>{toast.title}</Toast.Title>}
+              {toast.title && (
+                <Toast.Title
+                  fontSize={{ base: "1.2rem", md: "1.3rem" }}
+                  fontWeight="600"
+                  fontFamily="var(--main-font)"
+                >
+                  {toast.title}
+                </Toast.Title>
+              )}
               {toast.description && (
-                <Toast.Description>{toast.description}</Toast.Description>
+                <Toast.Description
+                  fontSize={{ base: "1.0rem", md: "1.1rem" }}
+                  fontFamily="var(--main-font)"
+                >
+                  {toast.description}
+                </Toast.Description>
               )}
             </Stack>
             {toast.action && (
@@ -39,5 +52,5 @@ export const Toaster = () => {
         )}
       </ChakraToaster>
     </Portal>
-  )
-}
+  );
+};

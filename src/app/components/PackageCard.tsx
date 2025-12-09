@@ -147,7 +147,7 @@ export default function PackageCard({
               💰
             </Text>
             <Text fontFamily="var(--secondary-font)" fontSize="1.2rem">
-              Ár: {formatCurrency(selectedPackageItem.price)}
+              Ár: {formatCurrency(selectedPackageItem.price)}-tól
             </Text>
           </Box>
           <Button
@@ -176,6 +176,7 @@ export default function PackageCard({
             type="rendeles"
             selectedPackage={{
               name: selectedPackageItem.name,
+              label: title,
               description: description,
               price: selectedPackageItem.price,
               features: selectedPackageItem.features
