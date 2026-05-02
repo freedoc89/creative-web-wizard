@@ -48,10 +48,10 @@ export async function POST(req: Request) {
   try {
     // Email neked
     await transporter.sendMail({
-      from: `${userTexts.footer[locale]} <${process.env.SMTP_USER}>`,
-      replyTo: email,
+      from: `${name} <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
       subject: adminSubject,
+      replyTo: email,
       text: `
         ${adminTexts.labels.name[locale]}: ${name}
         ${adminTexts.labels.email[locale]}: ${email}
