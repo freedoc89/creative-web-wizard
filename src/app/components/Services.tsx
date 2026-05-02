@@ -28,7 +28,11 @@ export default function Services() {
         {services.title[locale]}
       </Heading>
       <Grid
-        templateColumns={["1fr", "repeat(2, 1fr)"]}
+        templateColumns={{
+          base: "1fr",
+          lg: "repeat(2, 1fr)",
+          xl: "repeat(3, 1fr)"
+        }}
         width={["90%", "80%"]}
         gap={6}
         justifyItems={["center", "initial"]}

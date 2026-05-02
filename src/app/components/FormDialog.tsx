@@ -81,11 +81,44 @@ export default function FormDialog({
     en: { label: "Package:" },
     de: { label: "Paket:" }
   };
+
+  const toastTexts = {
+    success: {
+      quote_request: {
+        hu: "Ajánlatkérés elküldve!",
+        en: "Quote request sent!",
+        de: "Angebotsanfrage gesendet!"
+      },
+      order: {
+        hu: "Megrendelés sikeres!",
+        en: "Order successful!",
+        de: "Bestellung erfolgreich!"
+      },
+      description: {
+        hu: "Hamarosan felvesszük Önnel a kapcsolatot.",
+        en: "We will contact you shortly.",
+        de: "Wir werden uns in Kürze mit Ihnen in Verbindung setzen."
+      }
+    },
+    error: {
+      title: {
+        hu: "Hiba történt!",
+        en: "An error occurred!",
+        de: "Ein Fehler ist aufgetreten!"
+      },
+      description: {
+        hu: "A küldés sikertelen volt.",
+        en: "Sending failed.",
+        de: "Versand fehlgeschlagen."
+      }
+    }
+  };
   const onSubmit = async (data: FormData) => {
     const fullData = {
       ...data,
       type,
-      selectedPackage
+      selectedPackage,
+      locale
     };
 
     // console.log("Küldés:", fullData);
@@ -102,10 +135,8 @@ export default function FormDialog({
         //console.log("Email sikeresen elküldve");
         toaster.create({
           title:
-            type === "quote_request"
-              ? "Ajánlatkérés elküldve!"
-              : "Megrendelés sikeres!",
-          description: "Hamarosan felvesszük Önnel a kapcsolatot.",
+            toastTexts.success[type as keyof typeof toastTexts.success][locale],
+          description: toastTexts.success.description[locale],
           type: "success",
           duration: 4000,
           closable: true
@@ -113,8 +144,8 @@ export default function FormDialog({
       } else {
         console.error("Email küldés sikertelen");
         toaster.create({
-          title: "Hiba történt!",
-          description: "A küldés sikertelen volt.",
+          title: toastTexts.error.title[locale],
+          description: toastTexts.error.description[locale],
           type: "error",
           duration: 4000
         });
@@ -163,7 +194,7 @@ export default function FormDialog({
             width="100%"
             display="flex"
             flexDirection="column"
-            maxW="90vw"
+            maxW={["90vw", "500px"]}
             maxH="80vh"
             onClick={(e) => e.stopPropagation()}
           >
