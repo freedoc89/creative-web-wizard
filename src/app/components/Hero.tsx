@@ -15,7 +15,6 @@ import { FaHandPointRight } from "react-icons/fa";
 import FormDialog from "./FormDialog";
 import { useState } from "react";
 import { useLanguage } from "../hooks/useLanguage";
-import packages from "@/data/packages";
 
 export default function Hero() {
   const [open, setOpen] = useState(false);
@@ -109,14 +108,6 @@ export default function Hero() {
               isOpen={open}
               onClose={() => setOpen(false)}
               type="quote_request"
-              selectedPackage={{
-                name:
-                  packages.groups[0].plans?.[0].name[locale] || "Egyedi csomag",
-                label: packages.groups[0].label[locale],
-                description: packages.groups[0].description?.[locale] || null,
-                price: packages.groups[0].plans?.[0].price.toString() || "0",
-                features: packages.groups[0].plans?.[0].features[locale] || []
-              }}
             />
           </VStack>
           <Box flex="1" display={["none", "block"]}>

@@ -6,19 +6,27 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   const body = await req.json();
-
-  const { name, email, message, type, selectedPackage, locale } = body as {
+  const {
+    name,
+    email,
+    message,
+    type,
+    selectedService,
+    selectedPackage,
+    locale
+  } = body as {
     name: string;
     email: string;
     message: string;
     type: FormMode;
-    selectedPackage: {
+    selectedService?: string;
+    selectedPackage?: {
       name: string;
       label: string;
       description: string | null;
       price: string;
       features: string[];
-    };
+    } | null;
     locale: Locale;
   };
 
@@ -41,21 +49,24 @@ export async function POST(req: Request) {
     // Email neked
     await transporter.sendMail({
       from: `${userTexts.footer[locale]} <${process.env.SMTP_USER}>`,
+      replyTo: email,
       to: process.env.SMTP_USER,
       subject: adminSubject,
       text: `
         ${adminTexts.labels.name[locale]}: ${name}
         ${adminTexts.labels.email[locale]}: ${email}
-        ${adminTexts.labels.type[locale]}: ${type}
+        ${adminTexts.labels.type[locale]}: ${type == "consultation" ? "Konzultáció" : "Árajánlatkérés"}
         ${adminTexts.labels.message[locale]}: ${message}
-    --- ${adminTexts.labels.package[locale].toUpperCase()} ---
+    ---  ${selectedPackage ? adminTexts.labels.package[locale].toUpperCase() : ""}  ---
     ${
       selectedPackage
         ? `Csomag neve: ${selectedPackage.label}
     Típus: ${selectedPackage.name}
     Ár: ${selectedPackage.price}
     Leírás: ${selectedPackage.description ?? "Nincs leírás"}`
-        : "Nem választott csomagot / Egyedi ajánlat"
+        : selectedService
+          ? `Kiválasztott szolgáltatás: ${selectedService}`
+          : "Nincs kiválasztott szolgáltatás vagy csomag"
     }
   `
     });
@@ -63,7 +74,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `${userTexts.footer[locale]} <${process.env.SMTP_USER}>`,
       to: email,
-      subject: userTexts.titles[type][locale],
+      subject: userTexts.subjects[type][locale],
       html: `
         <div style="font-family: Arial, sans-serif; color: #171717; line-height: 1.4; background-color: #f4f4f4; padding: 0.5rem;">
           <div style="
@@ -84,7 +95,7 @@ export async function POST(req: Request) {
             <h2 style="color: #fff; text-align: center; font-size:1.6rem;">${userTexts.titles[type][locale]}</h2>
             <p style="text-align: center; font-size: 1rem;color: #fff;">${userTexts.messages[type][locale]}</p>
       
-            <!-- Rendelés részletei -->
+            <!-- Rendelés / Szolgáltatás részletei -->
             <h2 style="margin-top:2rem; font-size:1.4rem; text-align:center; text-decoration: underline; color:#fff;">${userTexts.packageSection.title[locale]}</h2>
             <div style="margin:0 auto; 
                         width:fit-content; 
@@ -96,9 +107,18 @@ export async function POST(req: Request) {
                         border: 1px solid rgba(24, 74, 231, 0.7);
                         border-bottom: 3px solid rgba(24, 74, 231, 0.9);
                         border-right: 3px solid rgba(24, 74, 231, 0.9);">
-                          <h2 style="color: #fff;font-size:1.2rem;text-align:center; margin-bottom:0; font-weight:700;">${selectedPackage?.label}</h2>
+                       ${
+                         selectedPackage
+                           ? `   <h2 style="color: #fff;font-size:1.2rem;text-align:center; margin-bottom:0; font-weight:700;">${selectedPackage?.label}</h2>
           <p><strong>${selectedPackage?.name}</strong></p>
                     <p>${userTexts.packageSection.priceLabel[locale]}: ${selectedPackage?.price.toLocaleString()}</p>
+                    `
+                           : `
+                <h3 style="color: #fff; font-size:1.2rem; text-align:center; margin-top:0; font-weight:700; margin-bottom:0;">
+                  ${selectedService || "Egyedi szolgáltatás"}
+                </h3>
+              `
+                       }
                   </div>
                     <!-- Footer -->
             <p style="text-align: center; margin-top: 7rem; font-size: 0.85rem; color: #ebebeb;">

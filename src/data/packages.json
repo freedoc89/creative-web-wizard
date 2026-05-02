@@ -402,22 +402,6 @@
           "en": "Book a Consultation",
           "de": "Beratung anfragen"
         }
-      },
-      {
-        "type": "custom",
-        "icon": "FaEdit",
-        "label": {
-          "hu": "Egyedi fejlesztés",
-          "en": "Custom Development",
-          "de": "Individuelle Entwicklung"
-        },
-        "description": null,
-        "plans": null,
-        "buttonContent": {
-          "hu": "Konzultáció igénylése",
-          "en": "Book a Consultation",
-          "de": "Beratung anfragen"
-        }
       }
     ]
   }

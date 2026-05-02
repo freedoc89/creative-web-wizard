@@ -18,7 +18,6 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Technologies from "../components/Technologies";
-import packages from "@/data/packages";
 import { useLanguage } from "../hooks/useLanguage";
 import heroContent from "@/data/heroContent";
 import { WorkProcess } from "../components/WorkProcess";
@@ -113,13 +112,6 @@ export default function Home() {
           isOpen={open}
           onClose={() => setOpen(false)}
           type="quote_request"
-          selectedPackage={{
-            name: packages.groups[0].plans?.[0].name[locale] || "Egyedi csomag",
-            label: packages.groups[0].label[locale],
-            description: packages.groups[0].description?.[locale] || null,
-            price: packages.groups[0].plans?.[0].price.toString() || "0",
-            features: packages.groups[0].plans?.[0].features[locale] || []
-          }}
         />
       </Flex>
 

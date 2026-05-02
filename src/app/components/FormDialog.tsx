@@ -56,7 +56,7 @@ type FormDialogProps = {
     description: string | null;
     price: string;
     features: string[];
-  };
+  } | null;
 };
 
 export default function FormDialog({
@@ -117,6 +117,9 @@ export default function FormDialog({
     const fullData = {
       ...data,
       type,
+      selectedService: !selectedPackage
+        ? services.items[parseInt(selectedIndex || "0")].label[locale]
+        : null,
       selectedPackage,
       locale
     };
@@ -136,7 +139,7 @@ export default function FormDialog({
         toaster.create({
           title:
             toastTexts.success[type as keyof typeof toastTexts.success][locale],
-          description: toastTexts.success.description[locale],
+          description: formDialogContent.toastNotificationContent[locale],
           type: "success",
           duration: 4000,
           closable: true
@@ -244,7 +247,9 @@ export default function FormDialog({
                       </Field.Label>
                       <RadioGroup.Root
                         value={selectedIndex}
-                        onValueChange={(e) => setSelectedIndex(e.value!)}
+                        onValueChange={(e) => {
+                          setSelectedIndex(e.value!);
+                        }}
                         mt="1rem"
                         borderBottom="2px solid rgba(255,255,255,.3)"
                         width="100%"
@@ -294,7 +299,7 @@ export default function FormDialog({
                       )}
                     </Field.Root>
                   )}
-                  {type === "consultation" && (
+                  {type === "consultation" && selectedPackage && (
                     <VStack width="100%" alignItems="start">
                       <Text>{modeContent?.serviceLabel?.[locale]}</Text>
                       <Box
