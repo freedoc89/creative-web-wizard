@@ -8,7 +8,7 @@ export default function Navbar() {
     <HStack
       id="page_header"
       top={0}
-      zIndex="99999"
+      zIndex="1000"
       position="sticky"
       boxShadow="0px 2px 8px 0px rgba(24, 74, 231, 0.4)"
       justifyContent="space-between"

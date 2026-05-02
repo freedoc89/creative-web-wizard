@@ -133,17 +133,23 @@ export default function FormDialog({
     <Dialog.Root
       open={isOpen}
       onOpenChange={(open) => {
-        if (!open) onClose();
+        if (!open) {
+          onClose();
+        }
       }}
     >
       <Portal>
         <DialogBackdrop bg="rgba(0, 0, 0, 0.8)" backdropFilter="blur(8px)" />
         <DialogPositioner
-          maxW="95%"
-          top={["5%", "8%"]}
-          padding={["2px", "initial"]}
-          left="50%"
-          style={{ transform: "translateX(-50%)" }}
+          zIndex="11000"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              onClose();
+            }
+          }}
         >
           <DialogContent
             boxShadow="var(--card-shadow)"
@@ -154,7 +160,12 @@ export default function FormDialog({
             fontFamily="var(--main-font)"
             overflowY="auto"
             overflowX="hidden"
+            width="100%"
+            display="flex"
+            flexDirection="column"
+            maxW="90vw"
             maxH="80vh"
+            onClick={(e) => e.stopPropagation()}
           >
             <DialogHeader justifyContent="center">
               <DialogTitle
