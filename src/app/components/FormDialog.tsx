@@ -23,28 +23,38 @@ import {
   VStack
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RiMailSendLine } from "react-icons/ri";
 import z from "zod";
+import { useLanguage } from "../hooks/useLanguage";
+import { formDialogContent, FormMode } from "@/data/formDialogContent";
+import { Locale } from "@/data/localization";
 
-const schema = z.object({
-  name: z.string().min(1, "Név kötelező"),
-  email: z.string().email("Érvénytelen email formátum"),
-  message: z.string().min(10, "Minimum 10 karakter")
-});
+const createSchema = (locale: Locale) =>
+  z.object({
+    name: z.string().min(1, formDialogContent.fields[0].errorMessage[locale]),
+    email: z.string().email(formDialogContent.fields[1].errorMessage[locale]),
+    message: z
+      .string()
+      .min(10, formDialogContent.fields[2].errorMessage[locale])
+  });
 
-type FormData = z.infer<typeof schema>;
+type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 type FormDialogProps = {
   isOpen: boolean;
   onClose: () => void;
-  type: "ajanlat" | "rendeles";
+  type: FormMode;
   selectedPackage?: {
     name: string;
     label: string;
     description: string | null;
-    price: number;
+    price: string;
     features: string[];
   };
 };
@@ -56,7 +66,8 @@ export default function FormDialog({
   selectedPackage
 }: FormDialogProps) {
   const [selectedIndex, setSelectedIndex] = useState<string | null>("1");
-
+  const { locale } = useLanguage();
+  const schema = useMemo(() => createSchema(locale), [locale]);
   const {
     register,
     handleSubmit,
@@ -65,6 +76,11 @@ export default function FormDialog({
   } = useForm<FormData>({
     resolver: zodResolver(schema)
   });
+  const packageDescription = {
+    hu: { label: "Csomag:" },
+    en: { label: "Package:" },
+    de: { label: "Paket:" }
+  };
   const onSubmit = async (data: FormData) => {
     const fullData = {
       ...data,
@@ -72,7 +88,7 @@ export default function FormDialog({
       selectedPackage
     };
 
-    //console.log("Küldés:", fullData);
+    // console.log("Küldés:", fullData);
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -86,7 +102,7 @@ export default function FormDialog({
         //console.log("Email sikeresen elküldve");
         toaster.create({
           title:
-            type === "ajanlat"
+            type === "quote_request"
               ? "Ajánlatkérés elküldve!"
               : "Megrendelés sikeres!",
           description: "Hamarosan felvesszük Önnel a kapcsolatot.",
@@ -111,6 +127,8 @@ export default function FormDialog({
     onClose();
   };
 
+  const modeContent = formDialogContent.modes[type as FormMode];
+
   return (
     <Dialog.Root
       open={isOpen}
@@ -122,6 +140,7 @@ export default function FormDialog({
         <DialogBackdrop bg="rgba(0, 0, 0, 0.8)" backdropFilter="blur(8px)" />
         <DialogPositioner
           maxW="95%"
+          top={["5%", "8%"]}
           padding={["2px", "initial"]}
           left="50%"
           style={{ transform: "translateX(-50%)" }}
@@ -133,6 +152,9 @@ export default function FormDialog({
             border="var(--card-border)"
             color=" var(--foreground)"
             fontFamily="var(--main-font)"
+            overflowY="auto"
+            overflowX="hidden"
+            maxH="80vh"
           >
             <DialogHeader justifyContent="center">
               <DialogTitle
@@ -140,54 +162,49 @@ export default function FormDialog({
                 fontWeight="700"
                 color="var(--foreground)"
               >
-                {type === "ajanlat" ? "Ajánlatkérés" : "Megrendelés"}
+                {modeContent?.title?.[locale]}
               </DialogTitle>
             </DialogHeader>
             <DialogBody>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack gap="4">
-                  <Field.Root>
-                    <Field.Label color=" var(--foreground)">Név</Field.Label>
-                    <Input {...register("name")} placeholder="Teljes név" />
-                    {errors.name && (
-                      <Box color="red.300" fontSize="0.8rem">
-                        {errors.name.message}
-                      </Box>
-                    )}
-                  </Field.Root>
+                  {formDialogContent.fields.map((field, index) => (
+                    <Field.Root
+                      key={index}
+                      invalid={!!errors[field.id as keyof FormData]}
+                    >
+                      <Field.Label color=" var(--foreground)">
+                        {field.label[locale]}
+                      </Field.Label>
+                      {field.type === "text" ? (
+                        <Input
+                          {...register(field.id as keyof FormData)}
+                          placeholder={field.placeholder[locale]}
+                        />
+                      ) : field.type === "textarea" ? (
+                        <Textarea
+                          {...register(field.id as keyof FormData)}
+                          placeholder={field.placeholder[locale]}
+                        />
+                      ) : null}
+                      {errors[field.id as keyof FormData] && (
+                        <Box color="red.300" fontSize="0.8rem">
+                          {errors[field.id as keyof FormData]?.message}
+                        </Box>
+                      )}
+                    </Field.Root>
+                  ))}
 
-                  <Field.Root>
-                    <Field.Label>Email</Field.Label>
-                    <Input {...register("email")} placeholder="Email cím" />
-                    {errors.email && (
-                      <Box color="red.300" fontSize="0.8rem">
-                        {errors.email.message}
-                      </Box>
-                    )}
-                  </Field.Root>
-
-                  <Field.Root>
-                    <Field.Label>Üzenet</Field.Label>
-                    <Textarea
-                      {...register("message")}
-                      placeholder="Írd le mire van szükséged..."
-                    />
-                    {errors.message && (
-                      <Box color="red.300" fontSize="0.8rem">
-                        {errors.message.message}
-                      </Box>
-                    )}
-                  </Field.Root>
-                  {type === "ajanlat" && (
+                  {type === "quote_request" && (
                     <Field.Root>
-                      <Field.Label>Szolgáltatás típusa</Field.Label>
+                      <Field.Label>
+                        {modeContent?.serviceLabel?.[locale]}
+                      </Field.Label>
                       <RadioGroup.Root
                         value={selectedIndex}
                         onValueChange={(e) => setSelectedIndex(e.value!)}
                         mt="1rem"
-                        mb="1rem"
                         borderBottom="2px solid rgba(255,255,255,.3)"
-                        pb="1rem"
                         width="100%"
                       >
                         <Flex
@@ -195,7 +212,7 @@ export default function FormDialog({
                           flexDirection={["column !important", "row", "row"]}
                           wrap={["wrap", "nowrap"]}
                         >
-                          {services.map((item, index) => (
+                          {services.items.map((item, index) => (
                             <RadioGroup.Item
                               display="flex"
                               justifyContent="center"
@@ -222,7 +239,7 @@ export default function FormDialog({
                             >
                               <RadioGroup.ItemHiddenInput />
                               <RadioGroup.ItemText>
-                                {item.label}
+                                {item.label[locale]}
                               </RadioGroup.ItemText>
                             </RadioGroup.Item>
                           ))}
@@ -235,20 +252,19 @@ export default function FormDialog({
                       )}
                     </Field.Root>
                   )}
-                  {type === "rendeles" && (
+                  {type === "consultation" && (
                     <VStack width="100%" alignItems="start">
-                      <Text>Kiválasztott szolgáltatás</Text>
+                      <Text>{modeContent?.serviceLabel?.[locale]}</Text>
                       <Box
                         border="1px solid var(--foreground)"
                         p="3"
                         borderRadius="md"
                       >
                         <strong style={{ marginRight: "0.3rem" }}>
-                          Csomag:{" "}
+                          {packageDescription[locale].label}
                         </strong>
                         {selectedPackage?.label.replace("Csomagok", "")}-{" "}
-                        {selectedPackage!.name} –{" "}
-                        {selectedPackage!.price.toLocaleString("hu-HU")} Ft
+                        {selectedPackage!.name} – {selectedPackage!.price}
                         {selectedPackage!.description && (
                           <span
                             style={{
@@ -267,9 +283,7 @@ export default function FormDialog({
                     </VStack>
                   )}
                   <Text font="status-bar" px={3}>
-                    A megrendelési igény/ajánlatkérés leadása után felvesszük
-                    Önnel a kapcsolatot a részletek tisztázása és a
-                    szerződéskötés érdekében.
+                    {modeContent?.description?.[locale]}
                   </Text>
                 </Stack>
 
@@ -303,7 +317,7 @@ export default function FormDialog({
                     transition="background 0.2s ease-out"
                     boxShadow="0px 2px 1px 1px rgba(231, 24, 24, 0.6)"
                   >
-                    Mégse
+                    {formDialogContent.declineButtonText[locale]}
                   </Button>
                   <Button
                     type="submit"
@@ -329,9 +343,7 @@ export default function FormDialog({
                     boxShadow="0px 2px 1px 1px rgba(24, 74, 231, 0.6)"
                   >
                     <RiMailSendLine />
-                    {type === "ajanlat"
-                      ? "Ajánlat küldése"
-                      : "Megrendelem"}{" "}
+                    {formDialogContent.submitButtonText[locale]}
                   </Button>
                 </DialogFooter>
               </form>

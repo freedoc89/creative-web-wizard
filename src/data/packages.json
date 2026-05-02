@@ -1,150 +1,424 @@
-[
-  {
-    "type": "shopify",
-    "label": "Shopify Csomagok",
-    "description": null,
-    "icon": "FaShopify",
-    "packages": [
+{
+  "packages": {
+    "title": {
+      "hu": "Csomagjaink",
+      "en": "Our Packages",
+      "de": "Unsere Pakete"
+    },
+    "items": [
       {
-        "name": "Kezdő",
-        "price": 150000,
-        "features": [
-          "Mobilbarát sablon kiválasztása",
-          "Alap színek, logó beállítása",
-          "Max. 5 termék feltöltése",
-          "Fizetési módok bekötése",
-          "Kapcsolat oldal és alap menük"
-        ]
+        "type": "shopify",
+        "icon": "FaShopify",
+        "label": {
+          "hu": "Shopify Csomagok",
+          "en": "Shopify Packages",
+          "de": "Shopify-Pakete"
+        },
+        "description": null,
+        "plans": [
+          {
+            "name": {
+              "hu": "Kezdő",
+              "en": "Starter",
+              "de": "Einsteiger"
+            },
+            "price": 150000,
+            "features": {
+              "hu": [
+                "Mobilbarát sablon kiválasztása",
+                "Alap színek, logó beállítása",
+                "Max. 5 termék feltöltése",
+                "Fizetési módok bekötése",
+                "Kapcsolat oldal és alap menük"
+              ],
+              "en": [
+                "Selection of mobile-friendly template",
+                "Setting basic colors and logo",
+                "Upload up to 5 products",
+                "Integration of payment methods",
+                "Contact page and basic menus"
+              ],
+              "de": [
+                "Auswahl eines mobilfreundlichen Templates",
+                "Basisfarben und Logo-Einstellungen",
+                "Hochladen von max. 5 Produkten",
+                "Anbindung von Zahlungsmethoden",
+                "Kontaktseite und Basis-Menüs"
+              ]
+            }
+          },
+          {
+            "name": {
+              "hu": "Profi (Ajánlott)",
+              "en": "Pro (Recommended)",
+              "de": "Profi (Empfohlen)"
+            },
+            "price": 250000,
+            "features": {
+              "hu": [
+                "Több sablon lehetőség",
+                "Max. 20 termék",
+                "Alap SEO beállítások",
+                "Teljes mobil optimalizálás"
+              ],
+              "en": [
+                "Multiple template options",
+                "Up to 20 products",
+                "Basic SEO settings",
+                "Full mobile optimization"
+              ],
+              "de": [
+                "Mehrere Template-Optionen",
+                "Max. 20 Produkte",
+                "Grundlegende SEO-Einstellungen",
+                "Vollständige mobile Optimierung"
+              ]
+            }
+          },
+          {
+            "name": {
+              "hu": "Prémium",
+              "en": "Premium",
+              "de": "Premium"
+            },
+            "price": 340000,
+            "features": {
+              "hu": [
+                "Teljesen egyedi design",
+                "Korlátlan termékfeltöltés",
+                "Automatizációk (pl. email, raktár)",
+                "Egyedi funkciók fejlesztése",
+                "Tanácsadás és support"
+              ],
+              "en": [
+                "Fully custom design",
+                "Unlimited product uploads",
+                "Automations (e.g. email, inventory)",
+                "Custom feature development",
+                "Consulting and support"
+              ],
+              "de": [
+                "Vollständig individuelles Design",
+                "Unbegrenzte Produkt-Uploads",
+                "Automatisierungen (z. B. E-Mail, Lager)",
+                "Entwicklung individueller Funktionen",
+                "Beratung und Support"
+              ]
+            }
+          }
+        ],
+        "buttonContent": {
+          "hu": "Konzultáció igénylése",
+          "en": "Book a Consultation",
+          "de": "Beratung anfragen"
+        }
       },
       {
-        "name": "Profi (Ajánlott)",
-        "price": 250000,
-        "features": [
-          "Több sablon lehetőség",
-          "Max. 20 termék",
-          "Alap SEO beállítások",
-          "Teljes mobil optimalizálás"
-        ]
+        "type": "wordpress",
+        "icon": "FaWordpress",
+        "label": {
+          "hu": "WordPress Csomagok",
+          "en": "WordPress Packages",
+          "de": "WordPress-Pakete"
+        },
+        "description": {
+          "hu": "Az árak nem tartalmazzák a domain és tárhely/VPS költségeit. A megfelelő szolgáltató kiválasztásában és beállításában természetesen segítünk.",
+          "en": "Prices do not include domain and hosting/VPS costs. We will naturally assist in selecting and setting up the right provider.",
+          "de": "Die Preise beinhalten keine Domain- und Hosting/VPS-Kosten. Wir helfen Ihnen natürlich bei der Auswahl und Einrichtung des richtigen Anbieters."
+        },
+        "plans": [
+          {
+            "name": {
+              "hu": "Kezdő",
+              "en": "Starter",
+              "de": "Einsteiger"
+            },
+            "price": 180000,
+            "features": {
+              "hu": [
+                "Mobilbarát sablon kiválasztása",
+                "Alap színek, logó beállítása",
+                "Max. 5 termék feltöltése",
+                "Fizetési módok bekötése",
+                "Kapcsolat oldal és alap menük"
+              ],
+              "en": [
+                "Selection of mobile-friendly template",
+                "Setting basic colors and logo",
+                "Upload up to 5 products",
+                "Integration of payment methods",
+                "Contact page and basic menus"
+              ],
+              "de": [
+                "Auswahl eines mobilfreundlichen Templates",
+                "Basisfarben und Logo-Einstellungen",
+                "Hochladen von max. 5 Produkten",
+                "Anbindung von Zahlungsmethoden",
+                "Kontaktseite und Basis-Menüs"
+              ]
+            }
+          },
+          {
+            "name": {
+              "hu": "Profi (Ajánlott)",
+              "en": "Pro (Recommended)",
+              "de": "Profi (Empfohlen)"
+            },
+            "price": 280000,
+            "features": {
+              "hu": [
+                "Több sablon lehetőség",
+                "Max. 20 termék",
+                "Alap SEO beállítások",
+                "Teljes mobil optimalizálás"
+              ],
+              "en": [
+                "Multiple template options",
+                "Up to 20 products",
+                "Basic SEO settings",
+                "Full mobile optimization"
+              ],
+              "de": [
+                "Mehrere Template-Optionen",
+                "Max. 20 Produkte",
+                "Grundlegende SEO-Einstellungen",
+                "Vollständige mobile Optimierung"
+              ]
+            }
+          },
+          {
+            "name": {
+              "hu": "Prémium",
+              "en": "Premium",
+              "de": "Premium"
+            },
+            "price": 480000,
+            "features": {
+              "hu": [
+                "Teljesen egyedi design",
+                "Korlátlan termékfeltöltés",
+                "Automatizációk (pl. email, raktár)",
+                "Egyedi funkciók fejlesztése",
+                "Tanácsadás és support"
+              ],
+              "en": [
+                "Fully custom design",
+                "Unlimited product uploads",
+                "Automations (e.g. email, inventory)",
+                "Custom feature development",
+                "Consulting and support"
+              ],
+              "de": [
+                "Vollständig individuelles Design",
+                "Unbegrenzte Produkt-Uploads",
+                "Automatisierungen (z. B. E-Mail, Lager)",
+                "Entwicklung individueller Funktionen",
+                "Beratung und Support"
+              ]
+            }
+          }
+        ],
+        "buttonContent": {
+          "hu": "Konzultáció igénylése",
+          "en": "Book a Consultation",
+          "de": "Beratung anfragen"
+        }
       },
       {
-        "name": "Prémium",
-        "price": 340000,
-        "features": [
-          "Teljesen egyedi design",
-          "Korlátlan termékfeltöltés",
-          "Automatizációk (pl. email, raktár)",
-          "Egyedi funkciók fejlesztése",
-          "Tanácsadás és support"
-        ]
-      }
-    ]
-  },
-  {
-    "type": "wordpress",
-    "label": "WordPress Csomagok",
-    "description": "Az árak nem tartalmazzák a domain és tárhely/VPS költségeit. A megfelelő szolgáltató kiválasztásában és beállításában természetesen segítünk.",
-    "icon": "FaWordpress",
-    "packages": [
-      {
-        "name": "Kezdő",
-        "price": 180000,
-        "features": [
-          "Mobilbarát sablon kiválasztása",
-          "Alap színek, logó beállítása",
-          "Max. 5 termék feltöltése",
-          "Fizetési módok bekötése",
-          "Kapcsolat oldal és alap menük"
-        ]
+        "type": "static",
+        "icon": "FaHtml5",
+        "label": {
+          "hu": "Statikus HTML Weboldal",
+          "en": "Static HTML Website",
+          "de": "Statische HTML-Webseite"
+        },
+        "description": {
+          "hu": "Az árak nem tartalmazzák a domain és tárhely/VPS költségeit. A megfelelő szolgáltató kiválasztásában és beállításában természetesen segítünk.",
+          "en": "Prices do not include domain and hosting/VPS costs. We will naturally assist in selecting and setting up the right provider.",
+          "de": "Die Preise beinhalten keine Domain- und Hosting/VPS-Kosten. Wir helfen Ihnen natürlich bei der Auswahl und Einrichtung des richtigen Anbieters."
+        },
+        "plans": [
+          {
+            "name": {
+              "hu": "Alap csomag",
+              "en": "Basic Package",
+              "de": "Basispaket"
+            },
+            "price": 100000,
+            "features": {
+              "hu": [
+                "Egyoldalas weboldal",
+                "Mobilbarát dizájn",
+                "Kapcsolati űrlap",
+                "Gyors betöltés",
+                "Egyszerű karbantartás"
+              ],
+              "en": [
+                "Single-page website",
+                "Mobile-friendly design",
+                "Contact form",
+                "Fast loading",
+                "Easy maintenance"
+              ],
+              "de": [
+                "Einseitige Webseite",
+                "Mobilfreundliches Design",
+                "Kontaktformular",
+                "Schnelles Laden",
+                "Einfache Wartung"
+              ]
+            }
+          }
+        ],
+        "buttonContent": {
+          "hu": "Konzultáció igénylése",
+          "en": "Book a Consultation",
+          "de": "Beratung anfragen"
+        }
       },
       {
-        "name": "Profi (Ajánlott)",
-        "price": 280000,
-        "features": [
-          "Több sablon lehetőség",
-          "Max. 20 termék",
-          "Alap SEO beállítások",
-          "Teljes mobil optimalizálás"
-        ]
+        "type": "desktop",
+        "icon": "PiMonitorBold",
+        "label": {
+          "hu": "Asztali alkalmazás",
+          "en": "Desktop Application",
+          "de": "Desktop-Anwendung"
+        },
+        "description": null,
+        "plans": [
+          {
+            "name": {
+              "hu": "Alap csomag",
+              "en": "Basic Package",
+              "de": "Basispaket"
+            },
+            "price": 250000,
+            "features": {
+              "hu": [
+                "Alap felhasználói felület (főablak + 2-3 nézet)",
+                "Alap stílus és színek beállítása",
+                "Telepíthető Windows csomag (MSIX/EXE)",
+                "Rövid dokumentáció és betanítás"
+              ],
+              "en": [
+                "Basic user interface (main window + 2-3 views)",
+                "Basic style and color settings",
+                "Installable Windows package (MSIX/EXE)",
+                "Short documentation and training"
+              ],
+              "de": [
+                "Basis-Benutzeroberfläche (Hauptfenster + 2-3 Ansichten)",
+                "Grundlegende Stil- und Farbeinstellungen",
+                "Installierbares Windows-Paket (MSIX/EXE)",
+                "Kurze Dokumentation und Einweisung"
+              ]
+            }
+          }
+        ],
+        "buttonContent": {
+          "hu": "Konzultáció igénylése",
+          "en": "Book a Consultation",
+          "de": "Beratung anfragen"
+        }
       },
       {
-        "name": "Prémium",
-        "price": 480000,
-        "features": [
-          "Teljesen egyedi design",
-          "Korlátlan termékfeltöltés",
-          "Automatizációk (pl. email, raktár)",
-          "Egyedi funkciók fejlesztése",
-          "Tanácsadás és support"
-        ]
-      }
-    ]
-  },
-  {
-    "type": "static",
-    "label": "Statikus HTML Weboldal",
-    "description": "Az árak nem tartalmazzák a domain és tárhely/VPS költségeit. A megfelelő szolgáltató kiválasztásában és beállításában természetesen segítünk.",
-    "icon": "FaHtml5",
-    "packages": [
-      {
-        "name": "Alap csomag",
-        "price": 100000,
-        "features": [
-          "Egyoldalas weboldal",
-          "Mobilbarát dizájn",
-          "Kapcsolati űrlap",
-          "Gyors betöltés",
-          "Egyszerű karbantartás"
-        ]
-      }
-    ]
-  },
-  {
-    "type": "desktop",
-    "label": "Asztali alkalmazás",
-    "description": null,
-    "icon": "PiMonitorBold",
-    "packages": [
-      {
-        "name": "Alap csomag",
-        "price": 250000,
-        "features": [
-          "Alap felhasználói felület (főablak + 2-3 nézet)",
-          "Alap stílus és színek beállítása",
-          "Telepíthető Windows csomag (MSIX/EXE)",
-          "Rövid dokumentáció és betanítás"
-        ]
-      }
-    ]
-  },
-  {
-    "type": "mobile",
-    "label": "Mobil alkalmazás",
-    "description": null,
-    "icon": "FaMobileAlt",
-    "packages": [
-      {
-        "name": "C# .NET (Android natív)",
-        "price": 300000,
-        "features": [
-          "Natív Android alkalmazás C# .NET keretrendszerrel",
-          "Alap felhasználói felület (főképernyő + 2-3 nézet)",
-          "Alap stílus és színek beállítása",
-          "Telepíthető Android APK",
-          "Rövid dokumentáció és betanítás"
-        ]
+        "type": "mobile",
+        "icon": "FaMobileAlt",
+        "label": {
+          "hu": "Mobil alkalmazás",
+          "en": "Mobile Application",
+          "de": "Mobile Applikation"
+        },
+        "description": null,
+        "plans": [
+          {
+            "name": {
+              "hu": "C# .NET (Android natív)",
+              "en": "C# .NET (Android Native)",
+              "de": "C# .NET (Android Nativ)"
+            },
+            "price": 300000,
+            "features": {
+              "hu": [
+                "Natív Android alkalmazás C# .NET keretrendszerrel",
+                "Alap felhasználói felület (főképernyő + 2-3 nézet)",
+                "Alap stílus és színek beállítása",
+                "Telepíthető Android APK",
+                "Rövid dokumentáció és betanítás"
+              ],
+              "en": [
+                "Native Android app with C# .NET framework",
+                "Basic user interface (home screen + 2-3 views)",
+                "Basic style and color settings",
+                "Installable Android APK",
+                "Short documentation and training"
+              ],
+              "de": [
+                "Native Android-App mit C# .NET Framework",
+                "Basis-Benutzeroberfläche (Hauptbildschirm + 2-3 Ansichten)",
+                "Grundlegende Stil- und Farbeinstellungen",
+                "Installierbare Android APK",
+                "Kurze Dokumentation und Einweisung"
+              ]
+            }
+          },
+          {
+            "name": {
+              "hu": "React Native (Android + iOS)",
+              "en": "React Native (Android + iOS)",
+              "de": "React Native (Android + iOS)"
+            },
+            "price": 400000,
+            "features": {
+              "hu": [
+                "Cross-platform mobilalkalmazás (Android és iOS)",
+                "Alap felhasználói felület (főképernyő + 2-3 nézet)",
+                "Alap stílus és színek beállítása",
+                "API integráció lehetősége",
+                "Publikálás előkészítése Play Store / App Store számára",
+                "Rövid dokumentáció és betanítás"
+              ],
+              "en": [
+                "Cross-platform mobile app (Android and iOS)",
+                "Basic user interface (home screen + 2-3 views)",
+                "Basic style and color settings",
+                "API integration option",
+                "Store preparation for Play Store / App Store",
+                "Short documentation and training"
+              ],
+              "de": [
+                "Plattformübergreifende mobile App (Android und iOS)",
+                "Basis-Benutzeroberfläche (Hauptbildschirm + 2-3 Ansichten)",
+                "Grundlegende Stil- und Farbeinstellungen",
+                "API-Integrationsoption",
+                "Vorbereitung für Play Store / App Store",
+                "Kurze Dokumentation und Einweisung"
+              ]
+            }
+          }
+        ],
+        "buttonContent": {
+          "hu": "Konzultáció igénylése",
+          "en": "Book a Consultation",
+          "de": "Beratung anfragen"
+        }
       },
       {
-        "name": "React Native (Android + iOS)",
-        "price": 400000,
-        "features": [
-          "Cross-platform mobilalkalmazás (Android és iOS)",
-          "Alap felhasználói felület (főképernyő + 2-3 nézet)",
-          "Alap stílus és színek beállítása",
-          "API integráció lehetősége",
-          "Publikálás előkészítése Play Store / App Store számára",
-          "Rövid dokumentáció és betanítás"
-        ]
+        "type": "custom",
+        "icon": "FaEdit",
+        "label": {
+          "hu": "Egyedi fejlesztés",
+          "en": "Custom Development",
+          "de": "Individuelle Entwicklung"
+        },
+        "description": null,
+        "plans": null,
+        "buttonContent": {
+          "hu": "Konzultáció igénylése",
+          "en": "Book a Consultation",
+          "de": "Beratung anfragen"
+        }
       }
     ]
   }
-]
+}

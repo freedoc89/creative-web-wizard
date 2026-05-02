@@ -1,21 +1,30 @@
+import { emailContent } from "@/data/emailTemplateContent";
+import { FormMode } from "@/data/formDialogContent";
+import { Locale } from "@/data/localization";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { name, email, message, type, selectedPackage } = body;
+  const { name, email, message, type, selectedPackage, locale } = body as {
+    name: string;
+    email: string;
+    message: string;
+    type: FormMode;
+    selectedPackage: {
+      name: string;
+      label: string;
+      description: string | null;
+      price: string;
+      features: string[];
+    };
+    locale: Locale;
+  };
 
-  // const userSubject =
-  //   type === "rendeles"
-  //     ? "Megrendelés visszaigazolása"
-  //     : "Ajánlatkérés fogadva";
+  const adminTexts = emailContent.admin;
+  const userTexts = emailContent.user;
 
-  const adminSubject =
-    type === "rendeles"
-      ? "Új megrendelés érkezett"
-      : "Új ajánlatkérés érkezett";
-
-  const adminEmail = process.env.SMTP_USER;
+  const adminSubject = adminTexts.subjects[type][locale];
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -30,75 +39,68 @@ export async function POST(req: Request) {
   try {
     // Email neked
     await transporter.sendMail({
-      from: `"Kreatív Web Mágus" <${process.env.SMTP_USER}>`,
-      to: adminEmail,
+      from: `${userTexts.footer[locale]} <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       subject: adminSubject,
       text: `
-Név: ${name}
-Email: ${email}
-Típus: ${type}
-Üzenet: ${message}
-Csomag: ${selectedPackage ? selectedPackage.name : "N/A"}
+        ${adminTexts.labels.name[locale]}: ${name}
+        ${adminTexts.labels.email[locale]}: ${email}
+        ${adminTexts.labels.type[locale]}: ${type}
+        ${adminTexts.labels.message[locale]}: ${message}
+        ${adminTexts.labels.package[locale]}: ${selectedPackage ?? "N/A"}
       `
     });
 
     await transporter.sendMail({
-      from: `"Kreatív Web Mágus" <${process.env.SMTP_USER}>`,
+      from: `${userTexts.footer[locale]} <${process.env.SMTP_USER}>`,
       to: email,
-      subject: "Köszönjük a megrendelését!",
+      subject: userTexts.titles[type][locale],
       html: `
-  <div style="font-family: Arial, sans-serif; color: #171717; line-height: 1.4; background-color: #f4f4f4; padding: 0.5rem;">
-    <div style="
-      margin: 0 auto; 
-      background-image: url('https://creativewebwizard.hu/background-min.png'); 
-      background-size: cover; 
-      background-position: center; 
-      border-radius: 12px;
-      padding: 2rem;
-      pointer-events:none;
-      user-select:none;
-    ">
-      <!-- Logo -->
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <img src="https://creativewebwizard.hu/Creative_Web_Wizard_logo.png" alt="Logo" style="max-height: 75px; height: auto; pointer-events:none;user-select:none;cursor:none;" />
-      </div>
-
-      <h2 style="color: #fff; text-align: center; font-size:1.6rem;">Köszönjük a megrendelését!</h2>
-      <p style="text-align: center; font-size: 1rem;color: #fff;">Hamarosan felvesszük Önnel a kapcsolatot a részletek tisztázása érdekében.</p>
-
-      <!-- Rendelés részletei -->
-       <h2 style="margin-top: 2rem;color: #fff;font-size:1.2rem;text-align:center; margin-bottom:0;">Megrendelt szolgáltatás:</h2>
-      <div style="margin:0 auto; 
-                  width:fit-content; 
-                  margin-top: 0.5rem; 
-                  background-color: #00091b; 
-                  padding: 0.6rem; 
-                  border-radius: 5px; 
-                  color:white; 
-                  border: 1px solid rgba(24, 74, 231, 0.7);
-                  border-bottom: 3px solid rgba(24, 74, 231, 0.9);
-                  border-right: 3px solid rgba(24, 74, 231, 0.9);">
-      <p><strong>Csomag:</strong> ${selectedPackage?.label} - ${
-        selectedPackage?.name
-      }</p>
-        <p><strong>Ár:</strong> ${selectedPackage?.price.toLocaleString(
-          "hu-HU"
-        )} Ft</p>
-       ${
-         selectedPackage?.description
-           ? `*${selectedPackage.description.replace(/\n/g, "<br>")}</p>`
-           : ""
-       }
-        
-      </div>
-
-      <!-- Footer -->
-      <p style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: #888;">
-        Kreatív Web Mágus Csapata!
-      </p>
-    </div>
-  </div>
-  `
+        <div style="font-family: Arial, sans-serif; color: #171717; line-height: 1.4; background-color: #f4f4f4; padding: 0.5rem;">
+          <div style="
+            margin: 0 auto; 
+            background-image: url('https://creativewebwizard.hu/background-min.png'); 
+            background-size: cover; 
+            background-position: center; 
+            border-radius: 12px;
+            padding: 2rem;
+            pointer-events:none;
+            user-select:none;
+          ">
+            <!-- Logo -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+              <img src="https://creativewebwizard.hu/Creative_Web_Wizard_logo_${locale.toUpperCase()}.png" alt="Logo" style="max-height: 75px; height: auto; pointer-events:none;user-select:none;cursor:none;" />
+            </div>
+      
+            <h2 style="color: #fff; text-align: center; font-size:1.6rem;">${userTexts.titles[type][locale]}</h2>
+            <p style="text-align: center; font-size: 1rem;color: #fff;">${userTexts.messages[type][locale]}</p>
+      
+            <!-- Rendelés részletei -->
+            <h2 style="margin-top:2rem; font-size:1.4rem; text-align:center; text-decoration: underline; color:#fff;">${userTexts.packageSection.title[locale]}</h2>
+            <div style="margin:0 auto; 
+                        width:fit-content; 
+                        margin-top: 0.5rem; 
+                        background-color: #00091b; 
+                        padding: 0.8rem; 
+                        border-radius: 5px; 
+                        color:white; 
+                        border: 1px solid rgba(24, 74, 231, 0.7);
+                        border-bottom: 3px solid rgba(24, 74, 231, 0.9);
+                        border-right: 3px solid rgba(24, 74, 231, 0.9);">
+                          <h2 style="color: #fff;font-size:1.2rem;text-align:center; margin-bottom:0; font-weight:700;">${selectedPackage?.label}</h2>
+          <p><strong>${selectedPackage?.name}</strong></p>
+                    <p>${userTexts.packageSection.priceLabel[locale]}: ${selectedPackage?.price.toLocaleString()} ${locale === "hu" ? "Ft" : "€"}</p>
+                  </div>
+                    <!-- Footer -->
+            <p style="text-align: center; margin-top: 7rem; font-size: 0.85rem; color: #ebebeb;">
+                   ${userTexts.footer[locale]}
+            </p>
+            </div>
+      
+          
+          </div>
+        </div>
+        `
     });
 
     return NextResponse.json({ success: true });

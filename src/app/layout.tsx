@@ -4,6 +4,7 @@ import "./globals.css";
 import { Theme } from "@chakra-ui/react";
 import { Saira, Kanit, Oswald } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
+import { LanguageProvider } from "./context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Kreatív Web Mágus",
@@ -32,8 +33,10 @@ export default function RootLayout({
     >
       <body>
         <Provider theme={Theme}>
-          {children}
-          <Toaster />{" "}
+          <LanguageProvider>
+            {children}
+            <Toaster />
+          </LanguageProvider>
         </Provider>
       </body>
     </html>

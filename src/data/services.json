@@ -1,32 +1,81 @@
-[
-  {
-    "type": "shopify",
-    "label": " Shopify fejlesztés",
-    "icon": "FaShopify",
-    "description": "Shopify webáruházak készítése, testreszabása, *alkalmazások kiváltása."
-  },
-  {
-    "type": "wordpress",
-    "label": "WordPress fejlesztés",
-    "icon": "FaWordpress",
-    "description": "Egyedi WordPress oldalak építése, testreszabása, egyedi bővítmény készítése."
-  },
-  {
-    "type": "webpage",
-    "label": "Weboldal fejlesztés",
-    "icon": "FaHtml5",
-    "description": "Modern és reszponzív weboldalak fejlesztése. (HTML, CSS, JS)"
-  },
-  {
-    "type": "desktop",
-    "label": "Asztali alkalmazás fejlesztés",
-    "icon": "FiMonitor",
-    "description": "Egyedi asztali alkalmazások fejlesztése. (Windows, Cross-Plat)"
-  },
-  {
-    "type": "mobile",
-    "label": "Mobil alkalmazás fejlesztés",
-    "icon": "FaMobileAlt",
-    "description": "Egyedi mobilalkalmazások fejlesztése: Android natív (C# .NET) és React Native (Android, iOS)"
+{
+  "services": {
+    "title": {
+      "hu": "Szolgáltatásaink",
+      "en": "Our Services",
+      "de": "Unsere Dienstleistungen"
+    },
+    "items": [
+      {
+        "type": "shopify",
+        "icon": "FaShopify",
+        "label": {
+          "hu": "Shopify fejlesztés",
+          "en": "Shopify Development",
+          "de": "Shopify Entwicklung"
+        },
+        "description": {
+          "hu": "Shopify webáruházak készítése, testreszabása, alkalmazások kiváltása egyedi megoldásokkal.",
+          "en": "Creation and customization of Shopify stores, replacing apps with custom solutions.",
+          "de": "Erstellung und Anpassung von Shopify-Webshops, Ersetzen von Apps durch maßgeschneiderte Lösungen."
+        }
+      },
+      {
+        "type": "wordpress",
+        "icon": "FaWordpress",
+        "label": {
+          "hu": "WordPress fejlesztés",
+          "en": "WordPress Development",
+          "de": "WordPress Entwicklung"
+        },
+        "description": {
+          "hu": "Egyedi WordPress oldalak építése, testreszabása, egyedi bővítmények készítése.",
+          "en": "Building and customizing unique WordPress sites, developing custom plugins.",
+          "de": "Erstellung und Anpassung individueller WordPress-Seiten, Entwicklung maßgeschneiderter Plugins."
+        }
+      },
+      {
+        "type": "webpage",
+        "icon": "FaHtml5",
+        "label": {
+          "hu": "Weboldal fejlesztés",
+          "en": "Website Development",
+          "de": "Webseiten Entwicklung"
+        },
+        "description": {
+          "hu": "Modern és reszponzív weboldalak fejlesztése a legújabb technológiákkal.",
+          "en": "Development of modern and responsive websites using the latest technologies.",
+          "de": "Entwicklung moderner und responsiver Webseiten mit den neuesten Technologien."
+        }
+      },
+      {
+        "type": "desktop",
+        "icon": "FiMonitor",
+        "label": {
+          "hu": "Asztali alkalmazás fejlesztés",
+          "en": "Desktop Application Development",
+          "de": "Desktop Anwendungsentwicklung"
+        },
+        "description": {
+          "hu": "Egyedi asztali alkalmazások fejlesztése Windows és Cross-Platform környezetbe.",
+          "en": "Development of custom desktop applications for Windows and Cross-Platform environments.",
+          "de": "Entwicklung maßgeschneiderter Desktop-Anwendungen für Windows und plattformübergreifende Umgebungen."
+        }
+      },
+      {
+        "type": "mobile",
+        "icon": "FaMobileAlt",
+        "label": {
+          "hu": "Mobil alkalmazás fejlesztés",
+          "en": "Mobile Application Development",
+          "de": "Mobile App-Entwicklung"
+        },
+        "description": {
+          "hu": "Egyedi mobilalkalmazások: Android natív (C# .NET) és React Native (Android, iOS).",
+          "en": "Custom mobile apps: Android native (C# .NET) and React Native (Android, iOS).",
+          "de": "Individuelle mobile Apps: Android nativ (C# .NET) und React Native (Android, iOS)."
+        }
+      }
+    ]
   }
-]
+}

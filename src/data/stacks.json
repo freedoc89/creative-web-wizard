@@ -1,0 +1,25 @@
+{
+  "title": {
+    "hu": "Technológiák, amikkel dolgozunk",
+    "en": "Technologies we work with",
+    "de": "Technologien, mit denen wir arbeiten"
+  },
+  "items": [
+    { "name": "HTML5", "icon": "FaHtml5" },
+    { "name": "Chakra UI", "icon": "SiChakraui" },
+    { "name": "Node.js", "icon": "FaNodeJs" },
+    { "name": "Next.js", "icon": "SiNextdotjs" },
+    { "name": "React", "icon": "FaReact" },
+    { "name": "React Native", "icon": "TbBrandReactNative" },
+    { "name": "JavaScript", "icon": "FaJs" },
+    { "name": "TypeScript", "icon": "SiTypescript" },
+    { "name": "Shopify", "icon": "FaShopify" },
+    { "name": "WordPress", "icon": "FaWordpress" },
+    { "name": "", "icon": "FaWix" },
+    { "name": "", "icon": "TbBrandCSharp" },
+    { "name": "", "icon": "SiDotnet" },
+    { "name": "Android", "icon": "DiAndroid" },
+    { "name": "MacOS", "icon": "FaApple" },
+    { "name": "Windows", "icon": "FaWindows" }
+  ]
+}

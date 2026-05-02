@@ -1,7 +1,5 @@
 "use client";
 
-import { PackageItem } from "@/data/packages";
-import { formatCurrency } from "@/utils/formatCurrency";
 import {
   Box,
   Button,
@@ -14,16 +12,21 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { IconType } from "react-icons";
-import { FaHtml5, FaShopify, FaWordpress } from "react-icons/fa";
-import { FaCircleCheck, FaHandshakeSimple } from "react-icons/fa6";
+import { FaCircleCheck } from "react-icons/fa6";
 import FormDialog from "./FormDialog";
+import { Plan } from "@/data/packages";
+import { Locale } from "@/data/localization";
+import { usePrice } from "../hooks/usePrice";
+import { HiChatBubbleLeftRight } from "react-icons/hi2";
 
 type PackageCardProps = {
   title: string;
   description: string | null;
   icon: IconType;
-  selectedPackage: string;
-  packages: PackageItem[];
+  selectedPackage: string | null;
+  plans: Plan[] | null;
+  locale: Locale;
+  buttonContent: string;
 };
 
 export default function PackageCard({
@@ -31,15 +34,26 @@ export default function PackageCard({
   icon,
   description,
   selectedPackage,
-  packages
+  plans,
+  locale,
+  buttonContent
 }: PackageCardProps) {
+  const { formatPrice } = usePrice(locale);
   const Icon = icon;
   const [selectedIndex, setSelectedIndex] = useState<string | null>(
     selectedPackage
   );
   const [open, setOpen] = useState(false);
-  const selectedPackageItem = packages[parseInt(selectedIndex!)];
+  const selectedPackageItem =
+    plans && plans.length > 0 ? plans[parseInt(selectedIndex || "0")] : null;
+  const priceLabels = {
+    hu: { label: "Ár", suffix: "-tól", prefix: "" },
+    en: { label: "Price", suffix: "", prefix: "from " },
+    de: { label: "Preis", suffix: "", prefix: "ab " }
+  };
 
+  const formattedPrice =
+    `${priceLabels[locale as Locale]?.prefix || ""} ${formatPrice(selectedPackageItem?.price ?? 0)} ${priceLabels[locale as Locale]?.suffix || ""}`.trim();
   return (
     <>
       <Box
@@ -72,64 +86,73 @@ export default function PackageCard({
             {title}
           </Heading>
         </HStack>
-        <RadioGroup.Root
-          value={selectedIndex}
-          onValueChange={(e) => setSelectedIndex(e.value!)}
-          mt="1rem"
-          mb="1rem"
-          borderBottom="2px solid rgba(255,255,255,.3)"
-          pb="1rem"
-        >
-          <Flex
-            gap="3"
-            flexDirection={["column", "row", "row"]}
-            wrap={["wrap", "nowrap"]}
+        {plans && plans.length > 0 && (
+          <RadioGroup.Root
+            value={selectedIndex}
+            onValueChange={(e) => setSelectedIndex(e.value!)}
+            mt="1rem"
+            mb="1rem"
+            borderBottom="2px solid rgba(255,255,255,.3)"
+            pb="1rem"
           >
-            {packages.map((item, index) => (
-              <RadioGroup.Item
-                display="flex"
-                justifyContent="center"
-                width="100%"
-                key={index}
-                value={index.toString()}
-                style={{
-                  padding: "0.4rem 0.7rem",
-                  borderRadius: "8px",
-                  background: "#031640",
-                  color: "#fff",
-                  cursor: "pointer",
-                  fontSize: "0.9rem",
-                  fontFamily: "var(--main-font)",
-                  transition: "all 0.25s ease"
-                }}
-                _checked={{
-                  background: "#184ae7 !important",
-                  color: "#fff"
-                }}
-                _hover={{
-                  background: "#10319E !important"
-                }}
-              >
-                <RadioGroup.ItemHiddenInput />
-                <RadioGroup.ItemText>{item.name}</RadioGroup.ItemText>
-              </RadioGroup.Item>
+            <Flex
+              gap="3"
+              flexDirection={["column", "row", "row"]}
+              wrap={["wrap", "nowrap"]}
+            >
+              {plans.map((item, index) => (
+                <RadioGroup.Item
+                  display="flex"
+                  justifyContent="center"
+                  width="100%"
+                  key={index}
+                  value={index.toString()}
+                  style={{
+                    padding: "0.4rem 0.7rem",
+                    borderRadius: "8px",
+                    background: "#8ca1e1",
+                    color: "#fff",
+                    cursor: "pointer",
+                    fontSize: "0.9rem",
+                    fontFamily: "var(--main-font)",
+                    transition: "all 0.25s ease",
+                    opacity: selectedIndex === index.toString() ? 1 : 0.85
+                  }}
+                  _checked={{
+                    background: "#031640 !important",
+                    color: "#fff"
+                  }}
+                  _hover={{
+                    background: "#3e549d !important"
+                  }}
+                >
+                  <RadioGroup.ItemHiddenInput />
+                  <RadioGroup.ItemText>{item.name[locale]}</RadioGroup.ItemText>
+                </RadioGroup.Item>
+              ))}
+            </Flex>
+          </RadioGroup.Root>
+        )}
+        {selectedPackageItem ? (
+          <List.Root gap="2" variant="plain" align="center">
+            {selectedPackageItem?.features[locale].map((feature, index) => (
+              <List.Item key={index} fontFamily="var(--secondary-font)">
+                <List.Indicator asChild color="green.500" marginEnd="0.5rem">
+                  <FaCircleCheck />
+                </List.Indicator>
+                {feature}
+              </List.Item>
             ))}
-          </Flex>
-        </RadioGroup.Root>
+          </List.Root>
+        ) : (
+          <Text fontFamily="var(--secondary-font)" fontSize="1.1rem">
+            {description}
+          </Text>
+        )}
 
-        <List.Root gap="2" variant="plain" align="center">
-          {selectedPackageItem?.features.map((feature, index) => (
-            <List.Item key={index} fontFamily="var(--secondary-font)">
-              <List.Indicator asChild color="green.500" marginEnd="0.5rem">
-                <FaCircleCheck />
-              </List.Indicator>
-              {feature}
-            </List.Item>
-          ))}
-        </List.Root>
         <Flex
           justifyContent="space-between"
-          alignItems="flex-start"
+          alignItems={{ base: "stretch", "2xl": "flex-end" }}
           flexDirection={{
             base: "column",
             sm: "column",
@@ -142,14 +165,21 @@ export default function PackageCard({
           pt="1rem"
           gap={["1rem", "1rem"]}
         >
-          <Box display="flex" alignItems="center" gap="0.2rem">
-            <Text fontSize="1.2rem" mt="-6px">
-              💰
-            </Text>
-            <Text fontFamily="var(--secondary-font)" fontSize="1.2rem">
-              Ár: {formatCurrency(selectedPackageItem.price)}-tól
-            </Text>
-          </Box>
+          {selectedPackageItem && (
+            <Box
+              display="flex"
+              alignItems="center"
+              gap="0.2rem"
+              alignSelf={{ "2xl": "flex-end" }}
+            >
+              <Text fontSize="1.2rem" mt="-6px">
+                💰
+              </Text>
+              <Text fontFamily="var(--secondary-font)" fontSize="1.2rem">
+                {formattedPrice}
+              </Text>
+            </Box>
+          )}
           <Button
             _hover={{ bg: "var(--button-hover-background)" }}
             _active={{
@@ -167,33 +197,25 @@ export default function PackageCard({
             boxShadow="0px 2px 1px 1px rgba(24, 74, 231, 0.6)"
             onClick={() => setOpen(true)}
           >
-            <FaHandshakeSimple />
-            Megrendelem
+            {/* <FaHandshakeSimple /> */}
+            <HiChatBubbleLeftRight />
+
+            {buttonContent}
           </Button>
           <FormDialog
             isOpen={open}
             onClose={() => setOpen(false)}
-            type="rendeles"
+            type={selectedPackageItem ? "consultation" : "quote_request"}
             selectedPackage={{
-              name: selectedPackageItem.name,
+              name: selectedPackageItem?.name[locale] || "Egyedi csomag",
               label: title,
               description: description,
-              price: selectedPackageItem.price,
-              features: selectedPackageItem.features
+              price: formattedPrice,
+              features: selectedPackageItem?.features[locale] || []
             }}
           />
         </Flex>
       </Box>
     </>
   );
-}
-
-const iconMap: Record<string, IconType> = {
-  shopify: FaShopify,
-  wordpress: FaWordpress,
-  html5: FaHtml5
-};
-
-export function getIcon(name: string): IconType {
-  return iconMap[name] || FaHtml5;
 }

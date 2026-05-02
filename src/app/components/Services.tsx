@@ -9,20 +9,23 @@ import {
   VStack
 } from "@chakra-ui/react";
 import { FiMonitor } from "react-icons/fi";
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function Services() {
+  const { locale } = useLanguage();
   return (
     <VStack id="services">
       <Heading
         mt={["5rem", "7rem"]}
-        color="#184ae7"
+        color="var(--foreground)"
         fontSize={["2rem", "3rem"]}
         mb={["2rem", "4rem"]}
+        textAlign="center"
         textTransform="uppercase"
         fontFamily="var(--main-font)"
         textDecoration="underline"
       >
-        Szolgáltatások
+        {services.title[locale]}
       </Heading>
       <Grid
         templateColumns={["1fr", "repeat(2, 1fr)"]}
@@ -31,7 +34,7 @@ export default function Services() {
         justifyItems={["center", "initial"]}
         justifyContent="center"
       >
-        {services.map((item, index) => {
+        {services.items.map((item, index) => {
           const Icon = item.icon;
           const maxWValue =
             item.type === "desktop" ? ["100%", "90%"] : ["100%", "75%"];
@@ -45,6 +48,7 @@ export default function Services() {
                 borderRadius="5px"
                 padding={["20px", "30px"]}
                 backgroundColor="var(--card-background)"
+                maxW="90vw"
               >
                 <HStack alignItems="flex-start" maxW={maxWValue} gap={4}>
                   {item.icon === FiMonitor ? (
@@ -62,31 +66,20 @@ export default function Services() {
                     fontSize={["2rem", "2.8rem"]}
                     lineHeight="1.1"
                     fontWeight="700"
+                    wordBreak="break-word"
+                    overflowWrap="anywhere"
                   >
-                    {item.label}
+                    {item.label[locale]}
                   </Heading>
                 </HStack>
                 <Text
                   fontFamily="var(--main-font)"
                   fontWeight="400"
+                  textWrap="wrap"
                   mt="2rem"
                   fontSize={["1.4rem, 2rem"]}
                 >
-                  {item.description}
-                  {item.type === "shopify" ? (
-                    <span
-                      style={{
-                        color: "red",
-                        opacity: ".7",
-                        fontSize: "0.8rem !important"
-                      }}
-                    >
-                      <br />
-                      (* ha lehetséges!)
-                    </span>
-                  ) : (
-                    <></>
-                  )}
+                  {item.description[locale]}
                 </Text>
               </Box>
             </GridItem>

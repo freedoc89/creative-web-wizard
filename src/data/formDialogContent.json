@@ -1,0 +1,112 @@
+{
+  "modes": {
+    "consultation": {
+      "title": {
+        "hu": "Konzultáció igénylése",
+        "en": "Request a Consultation",
+        "de": "Beratung anfragen"
+      },
+      "description": {
+        "hu": "Foglaljon időpontot egy kötetlen megbeszélésre, ahol átbeszéljük az igényeit.",
+        "en": "Book an appointment for an informal discussion to review your needs.",
+        "de": "Buchen Sie einen Termin für ein unverbindliches Gespräch."
+      },
+      "serviceLabel": {
+        "hu": "Kiválasztott szolgáltatás",
+        "en": "Selected Service",
+        "de": "Ausgewählte Dienstleistung"
+      }
+    },
+    "quote_request": {
+      "title": {
+        "hu": "Ajánlatkérés",
+        "en": "Quote Request",
+        "de": "Angebotsanfrage"
+      },
+      "description": {
+        "hu": "A megrendelési igény leadása után felvesszük Önnel a kapcsolatot a részletek tisztázása érdekében.",
+        "en": "After submitting your request, we will contact you to clarify the details.",
+        "de": "Nach Absenden Ihrer Anfrage werden wir uns mit Ihnen in Verbindung setzen."
+      },
+      "serviceLabel": {
+        "hu": "Szolgáltatás típusa",
+        "en": "Type of Service",
+        "de": "Art der Dienstleistung"
+      }
+    }
+  },
+  "fields": [
+    {
+      "id": "name",
+      "label": {
+        "hu": "Név",
+        "en": "Name",
+        "de": "Name"
+      },
+      "type": "text",
+      "placeholder": {
+        "hu": "Teljes név",
+        "en": "Full name",
+        "de": "Vollständiger Name"
+      },
+      "errorMessage": {
+        "hu": "Kérem adja meg a nevét.",
+        "en": "Please enter your name.",
+        "de": "Bitte geben Sie Ihren Namen ein."
+      }
+    },
+    {
+      "id": "email",
+      "label": {
+        "hu": "Email",
+        "en": "Email",
+        "de": "E-Mail"
+      },
+      "type": "text",
+      "placeholder": {
+        "hu": "Email cím",
+        "en": "Email address",
+        "de": "E-Mail-Adresse"
+      },
+      "errorMessage": {
+        "hu": "Kérem adja meg az email címét.",
+        "en": "Please enter your email address.",
+        "de": "Bitte geben Sie Ihre E-Mail-Adresse ein."
+      }
+    },
+    {
+      "id": "message",
+      "label": {
+        "hu": "Üzenet",
+        "en": "Message",
+        "de": "Nachricht"
+      },
+      "type": "textarea",
+      "placeholder": {
+        "hu": "Kérem írja le mire lenne szüksége.",
+        "en": "Please describe what you need.",
+        "de": "Bitte beschreiben Sie, was Sie benötigen."
+      },
+      "errorMessage": {
+        "hu": "Minimum 10 karakter",
+        "en": "Minimum 10 characters",
+        "de": "Mindestens 10 Zeichen"
+      }
+    }
+  ],
+  "submitButtonText": {
+    "hu": "Küldés",
+    "en": "Submit",
+    "de": "Senden"
+  },
+  "declineButtonText": {
+    "hu": "Mégsem",
+    "en": "Cancel",
+    "de": "Abbrechen"
+  },
+  "toastNotificationContent": {
+    "hu": "Köszönjük, hogy felvette velünk a kapcsolatot! Hamarosan jelentkezünk.",
+    "en": "Thank you for reaching out! We will get back to you soon.",
+    "de": "Vielen Dank für Ihre Kontaktaufnahme! Wir werden uns bald bei Ihnen melden."
+  }
+}

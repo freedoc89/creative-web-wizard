@@ -1,0 +1,74 @@
+{
+  "admin": {
+    "subjects": {
+      "consultation": {
+        "hu": "Új konzultáció igénylés érkezett",
+        "en": "New consultation request received",
+        "de": "Neue Beratungsanfrage eingegangen"
+      },
+      "quote_request": {
+        "hu": "Új ajánlatkérés érkezett",
+        "en": "New quote request received",
+        "de": "Neue Angebotsanfrage eingegangen"
+      }
+    },
+    "labels": {
+      "name": { "hu": "Név", "en": "Name", "de": "Name" },
+      "email": { "hu": "Email", "en": "Email", "de": "E-Mail" },
+      "type": { "hu": "Típus", "en": "Type", "de": "Typ" },
+      "message": { "hu": "Üzenet", "en": "Message", "de": "Nachricht" },
+      "package": { "hu": "Csomag", "en": "Package", "de": "Paket" }
+    }
+  },
+  "user": {
+    "subjects": {
+      "consultation": {
+        "hu": "Konzultáció igénylés visszaigazolása",
+        "en": "Consultation request confirmation",
+        "de": "Bestätigung der Beratungsanfrage"
+      },
+      "quote_request": {
+        "hu": "Ajánlatkérés visszaigazolása",
+        "en": "Quote request confirmation",
+        "de": "Bestätigung der Angebotsanfrage"
+      }
+    },
+    "titles": {
+      "consultation": {
+        "hu": "Köszönjük az érdeklődést!",
+        "en": "Thank you for your interest!",
+        "de": "Vielen Dank für Ihr Interesse!"
+      },
+      "quote_request": {
+        "hu": "Köszönjük a megkeresést!",
+        "en": "Thank you for reaching out!",
+        "de": "Vielen Dank für Ihre Nachricht!"
+      }
+    },
+    "messages": {
+      "consultation": {
+        "hu": "Hamarosan jelentkezünk a konzultáció időpontjával kapcsolatban.",
+        "en": "We will be in touch soon regarding the consultation date.",
+        "de": "Wir werden uns in Kürze bezüglich des Beratungstermins mit Ihnen in Verbindung setzen."
+      },
+      "quote_request": {
+        "hu": "Hamarosan felvesszük Önnel a kapcsolatot a részletek tisztázása érdekében.",
+        "en": "We will contact you soon to clarify the details.",
+        "de": "Wir werden uns in Kürze mit Ihnen in Verbindung setzen, um die Details zu klären."
+      }
+    },
+    "packageSection": {
+      "title": {
+        "hu": "Kiválasztott szolgáltatás:",
+        "en": "Selected service:",
+        "de": "Ausgewählte Dienstleistung:"
+      },
+      "priceLabel": { "hu": "Ár", "en": "Price", "de": "Preis" }
+    },
+    "footer": {
+      "hu": "Kreatív Web Mágus Csapata",
+      "en": "Creative Web Wizard Team",
+      "de": "Creative Web-Magier Team"
+    }
+  }
+}

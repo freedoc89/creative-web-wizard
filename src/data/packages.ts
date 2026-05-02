@@ -1,35 +1,55 @@
 import { IconType } from "react-icons";
-import { FaHtml5, FaMobileAlt, FaShopify, FaWordpress } from "react-icons/fa";
+import {
+  FaEdit,
+  FaHtml5,
+  FaMobileAlt,
+  FaShopify,
+  FaWordpress
+} from "react-icons/fa";
 import data from "./packages.json";
 import { FiMonitor } from "react-icons/fi";
 import { PiMonitorBold } from "react-icons/pi";
+import { LocalizedList, LocalizedString } from "./localization";
 
-export type PackageItem = {
-  name: string;
+export type Packages = {
+  title: LocalizedString;
+  groups: PackageGroup[];
+};
+
+export type Plan = {
+  name: LocalizedString;
   price: number;
-  features: string[];
+  features: LocalizedList;
 };
 
 export type PackageGroup = {
   type: string;
-  label: string;
-  description: string | null;
+  label: LocalizedString;
+  description: LocalizedString | null;
   icon: IconType;
-  packages: PackageItem[];
+  plans: Plan[] | null;
+  buttonContent: LocalizedString;
 };
 
-const iconMap: Record<string, IconType> = {
+export const iconMap: Record<string, IconType> = {
   FaShopify,
   FaWordpress,
   FaHtml5,
   FiMonitor,
   FaMobileAlt,
-  PiMonitorBold
+  PiMonitorBold,
+  FaEdit
 };
 
-const packages: PackageGroup[] = data.map((item) => ({
-  ...item,
-  icon: iconMap[item.icon] || FaHtml5
-}));
+const packages: Packages = {
+  title: data.packages.title,
+  groups: data.packages.items.map((item) => ({
+    ...item,
+    icon: iconMap[item.icon] || FaHtml5,
+    description: item.description as LocalizedString | null,
+    plans: item.plans,
+    buttonContent: item.buttonContent as LocalizedString
+  }))
+};
 
 export default packages;

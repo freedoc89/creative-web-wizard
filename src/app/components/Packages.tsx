@@ -1,36 +1,50 @@
 import packages from "@/data/packages";
 import { Grid, GridItem, Heading, VStack } from "@chakra-ui/react";
 import PackageCard from "./PackageCard";
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function Packages() {
+  const { locale } = useLanguage();
+
   return (
     <VStack id="packages">
       <Heading
         mt={["5rem", "7rem"]}
-        color="#184ae7"
+        color="var(--foreground)"
         fontSize={["2rem", "3rem"]}
         mb={["2rem", "4rem"]}
         textTransform="uppercase"
         fontFamily="var(--main-font)"
         textDecoration="underline"
       >
-        Csomag ajánlataink
+        {packages.title[locale]}
       </Heading>
       <Grid
-        templateColumns={["1fr", "repeat(3, 1fr)"]}
+        templateColumns={{
+          base: "1fr",
+          lg: "repeat(2, 1fr)",
+          xl: "repeat(3, 1fr)"
+        }}
         maxW={["90%", "80%"]}
         gap={6}
         justifyItems={["center", "initial"]}
         justifyContent="center"
       >
-        {packages.map((pack, index) => (
+        {packages.groups.map((pack, index) => (
           <GridItem key={index}>
             <PackageCard
-              title={pack.label}
+              title={pack.label[locale]}
               icon={pack.icon}
-              selectedPackage={packages[index].packages.length > 1 ? "1" : "0"}
-              packages={pack.packages}
-              description={pack.description}
+              selectedPackage={
+                packages.groups[index].plans &&
+                packages.groups[index].plans.length > 1
+                  ? "1"
+                  : "0"
+              }
+              plans={pack.plans}
+              description={pack.description && ""}
+              locale={locale}
+              buttonContent={pack.buttonContent[locale]}
             />
           </GridItem>
         ))}

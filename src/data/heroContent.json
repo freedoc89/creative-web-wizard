@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "title": {
+      "hu": "Weboldal és\nWebáruház\nKészítés",
+      "en": "Website and\nWebshop\nDevelopment",
+      "de": "Webseiten und\nWebshop\nErstellung"
+    },
+    "subtitle": {
+      "hu": "Professzionális, egyedi weboldalak és webáruházak készítése.",
+      "en": "Creation of professional, unique websites and online stores.",
+      "de": "Erstellung professioneller, individueller Webseiten und Online-Shops."
+    },
+    "bullets": {
+      "hu": [
+        "Egy jól megtervezett weboldal segít a márka építésben, és növeli a vállalkozásod hitelességét.",
+        "Lehetővé teszi, hogy bemutasd a vállalkozásod értékeit, küldetését és történetét.",
+        "Egy weboldal sokoldalú eszköz, amely segíthet elérni a céljaidat, legyen az akár üzleti, akár személyes."
+      ],
+      "en": [
+        "A well-designed website helps build your brand and increases your business credibility.",
+        "It allows you to showcase your business values, mission, and story.",
+        "A website is a versatile tool that can help you achieve your goals, whether business or personal."
+      ],
+      "de": [
+        "Eine gut gestaltete Website hilft beim Markenaufbau und erhöht die Glaubwürdigkeit Ihres Unternehmens.",
+        "Sie ermöglicht es Ihnen, Ihre Unternehmenswerte, Mission und Geschichte zu präsentieren.",
+        "Eine Website ist ein vielseitiges Werkzeug, das Ihnen helfen kann, Ihre Ziele zu erreichen, egal ob geschäftlich oder privat."
+      ]
+    },
+    "cta": {
+      "hu": "Árajánlat kérése",
+      "en": "Get a Quote",
+      "de": "Angebot anfordern"
+    },
+    "bottomBar": [
+      {
+        "id": "design",
+        "icon": "GoLightBulb",
+        "text": {
+          "hu": "Egyedi\ndesign",
+          "en": "Unique\ndesign",
+          "de": "Individuelles\nDesign"
+        }
+      },
+      {
+        "id": "mobile",
+        "icon": "IoPhonePortraitOutline",
+        "text": {
+          "hu": "Mobilbarát",
+          "en": "Mobile-friendly",
+          "de": "Mobilfreundlich"
+        }
+      },
+      {
+        "id": "seo",
+        "icon": "IoAnalytics",
+        "text": {
+          "hu": "SEO\noptimalizált",
+          "en": "SEO\noptimized",
+          "de": "SEO\noptimiert"
+        }
+      }
+    ]
+  }
+}
