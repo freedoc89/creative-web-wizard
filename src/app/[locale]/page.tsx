@@ -9,19 +9,19 @@ import {
   Text
 } from "@chakra-ui/react";
 import { IoChevronUp } from "react-icons/io5";
-import Footer from "./components/Footer";
-import Packages from "./components/Packages";
-import Services from "./components/Services";
+import Footer from "../components/Footer";
+import Packages from "../components/Packages";
+import Services from "../components/Services";
 import { FaHandPointRight } from "react-icons/fa";
-import FormDialog from "./components/FormDialog";
+import FormDialog from "../components/FormDialog";
 import { useState } from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Technologies from "./components/Technologies";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Technologies from "../components/Technologies";
 import packages from "@/data/packages";
-import { useLanguage } from "./hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 import heroContent from "@/data/heroContent";
-import { WorkProcess } from "./components/WorkProcess";
+import { WorkProcess } from "../components/WorkProcess";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
