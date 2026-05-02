@@ -89,10 +89,10 @@ export default function FormDialog({
         en: "Quote request sent!",
         de: "Angebotsanfrage gesendet!"
       },
-      order: {
-        hu: "Megrendelés sikeres!",
-        en: "Order successful!",
-        de: "Bestellung erfolgreich!"
+      consultation: {
+        hu: "Konzultáció kérése elküldve!",
+        en: "Consultation request sent!",
+        de: "Beratungsanfrage gesendet!"
       },
       description: {
         hu: "Hamarosan felvesszük Önnel a kapcsolatot.",
@@ -121,7 +121,7 @@ export default function FormDialog({
       locale
     };
 
-    // console.log("Küldés:", fullData);
+    //console.log("Küldés:", fullData);
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",

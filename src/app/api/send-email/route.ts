@@ -6,6 +6,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   const body = await req.json();
+
   const { name, email, message, type, selectedPackage, locale } = body as {
     name: string;
     email: string;
@@ -47,8 +48,16 @@ export async function POST(req: Request) {
         ${adminTexts.labels.email[locale]}: ${email}
         ${adminTexts.labels.type[locale]}: ${type}
         ${adminTexts.labels.message[locale]}: ${message}
-        ${adminTexts.labels.package[locale]}: ${selectedPackage ?? "N/A"}
-      `
+    --- ${adminTexts.labels.package[locale].toUpperCase()} ---
+    ${
+      selectedPackage
+        ? `Csomag neve: ${selectedPackage.label}
+    Típus: ${selectedPackage.name}
+    Ár: ${selectedPackage.price}
+    Leírás: ${selectedPackage.description ?? "Nincs leírás"}`
+        : "Nem választott csomagot / Egyedi ajánlat"
+    }
+  `
     });
 
     await transporter.sendMail({
@@ -89,7 +98,7 @@ export async function POST(req: Request) {
                         border-right: 3px solid rgba(24, 74, 231, 0.9);">
                           <h2 style="color: #fff;font-size:1.2rem;text-align:center; margin-bottom:0; font-weight:700;">${selectedPackage?.label}</h2>
           <p><strong>${selectedPackage?.name}</strong></p>
-                    <p>${userTexts.packageSection.priceLabel[locale]}: ${selectedPackage?.price.toLocaleString()} ${locale === "hu" ? "Ft" : "€"}</p>
+                    <p>${userTexts.packageSection.priceLabel[locale]}: ${selectedPackage?.price.toLocaleString()}</p>
                   </div>
                     <!-- Footer -->
             <p style="text-align: center; margin-top: 7rem; font-size: 0.85rem; color: #ebebeb;">
