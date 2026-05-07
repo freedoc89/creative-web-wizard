@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Icon, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
 import stacks from "@/data/stacks";
 import { useLanguage } from "../hooks/useLanguage";
 
@@ -29,34 +29,62 @@ export default function Technologies() {
       >
         {stacks.title[locale]}
       </Heading>
-      <Flex className="animate-marquee" gap="3rem" px="1.5rem">
-        {duplicatedStacks.map((stack, index) => (
-          <Flex
-            key={`${stack.name}-${index}`}
-            alignItems="center"
-            gap="1rem"
-            minW="max-content"
-          >
-            <Icon
-              as={stack.icon}
-              boxSize={["2.2rem", "2.8rem"]}
-              color="var(--foreground)"
-              transition="color 0.2s ease-in-out"
-              _hover={{ color: "var(--primary-color)" }}
-            />
-            <Text
-              fontFamily="var(--main-font)"
-              fontSize={["1.1rem", "1.4rem"]}
-              fontWeight="600"
-              color="var(--foreground)"
-              textTransform="uppercase"
-              letterSpacing="0.05em"
+      <Grid
+        gridTemplateAreas="'stack'"
+        gridTemplateColumns="100%"
+        width={["90%", "80%"]}
+        maxW={["90%", "80%"]}
+        height={["80px", "100px"]}
+        overflow="hidden"
+        backgroundColor="#f3f6fb"
+        borderRadius="18px"
+        position="relative"
+        mx="auto"
+      >
+        <Flex
+          className="animate-marquee"
+          gap="3rem"
+          px="1.5rem"
+          gridArea="stack"
+          zIndex={1}
+          alignSelf="center"
+        >
+          {duplicatedStacks.map((stack, index) => (
+            <Flex
+              key={`${stack.name}-${index}`}
+              alignItems="center"
+              gap="1rem"
+              minW="max-content"
             >
-              {stack.name}
-            </Text>
-          </Flex>
-        ))}
-      </Flex>
+              <Icon
+                as={stack.icon}
+                boxSize={["2.2rem", "2.8rem"]}
+                color="var(--foreground)"
+                transition="color 0.2s ease-in-out"
+                _hover={{ color: "var(--primary-color)" }}
+              />
+              <Text
+                fontFamily="var(--main-font)"
+                fontSize={["1.1rem", "1.4rem"]}
+                fontWeight="600"
+                color="var(--foreground)"
+                textTransform="uppercase"
+                letterSpacing="0.05em"
+              >
+                {stack.name}
+              </Text>
+            </Flex>
+          ))}
+        </Flex>
+        <Box
+          gridArea="stack"
+          width="100%"
+          height="100%"
+          zIndex={2}
+          pointerEvents="none"
+          boxShadow="inset 5px 0px 19px -13px rgba(24, 74, 231, 0.5), inset -5px 0px 19px -13px rgba(24, 74, 231, 0.5)"
+        />
+      </Grid>
     </Box>
   );
 }
