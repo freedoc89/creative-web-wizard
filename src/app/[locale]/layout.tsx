@@ -6,6 +6,7 @@ import { Saira, Kanit, Oswald } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { LanguageProvider } from "../context/LanguageContext";
 import { Locale } from "@/data/localization";
+import Script from "next/script";
 
 const metaTranslations = {
   hu: {
@@ -34,9 +35,15 @@ export async function generateMetadata({
     metaTranslations[locale as keyof typeof metaTranslations] ||
     metaTranslations.hu;
 
+  const baseUrl = "https://creativewebwizard.hu";
+  const ogImage = "/og-creativewebwizard-image.jpg";
+
   return {
-    metadataBase: new URL("https://creativewebwizard.hu"),
-    title: t.title,
+    metadataBase: new URL(baseUrl),
+    title: {
+      template: `%s | Creative Web Wizard`,
+      default: t.title
+    },
     description: t.description,
     alternates: {
       canonical: `/${locale}`,
@@ -44,6 +51,41 @@ export async function generateMetadata({
         "hu-HU": "/hu",
         "en-US": "/en",
         "de-DE": "/de"
+      }
+    },
+    openGraph: {
+      title: t.title,
+      description: t.description,
+      url: `${baseUrl}/${locale}`,
+      siteName: "Creative Web Wizard",
+      locale: locale === "en" ? "en_US" : locale === "de" ? "de_DE" : "hu_HU",
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: t.title
+        }
+      ]
+    },
+
+    // Twitter / X kártya
+    twitter: {
+      card: "summary_large_image",
+      title: t.title,
+      description: t.description,
+      images: [ogImage]
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1
       }
     }
   };
@@ -71,6 +113,14 @@ export default async function RootLayout({
       lang={locale}
       className={`${saira.variable} ${kanit.variable} ${oswald.variable}`}
     >
+      <head>
+        <Script
+          id="cookieyes"
+          type="text/javascript"
+          src="https://cdn-cookieyes.com/client_data/c48fafe37c895c4d960e5091b7e5c465/script.js"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body>
         <Provider theme={Theme}>
           <LanguageProvider initialLocale={locale as Locale}>
