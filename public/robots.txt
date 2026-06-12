@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://creativewebwizard.hu/sitemap.xml
